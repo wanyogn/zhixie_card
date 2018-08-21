@@ -1,0 +1,64 @@
+<view class='view_container'>
+  <view class='base_info'>
+    <view class='user_img'>
+      <image src='{{resultData.headimg}}'></image>
+    </view>
+  </view>
+  <view class='base_info'>
+    <view class='base_list'>
+      <view class='list_name'>姓名</view>
+     <input type='text' value='{{resultData.realname == undefined? "":resultData.realname}}' placeholder='姓名' bindinput='name' placeholder-class='place'/>
+    </view>
+
+    <view class='base_list'>
+      <view class='list_name'>部门</view>
+      <!--<input type='text' value='{{resultData.department}}' placeholder='部门' bindinput='department'/>-->
+      <picker value='{{department}}' range='{{departmentArr}}' bindchange='department'>
+        <view class='picker'>
+          {{departmentArr[department]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class='base_list'>
+      <view class='list_name'>职位</view>
+      <!--<input type='text' value='{{resultData.job}}' placeholder='职位' bindinput='job'/>-->
+      <picker value='{{job}}' range='{{jobArr}}' bindchange='job'>
+        <view class='picker'>
+          {{jobArr[job]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class='base_list borno'>
+      <view class='list_name'>公司</view>
+     <input type='text' value='{{resultData.companyname}}' placeholder='公司' bindinput='companyname' placeholder-class='place'/>
+    </view>
+  </view>
+  <view class='base_info mt50'>
+    <view class='base_list'>
+      <view class='list_name'>手机</view>
+     <input type='text' value='{{resultData.mobilephone}}' placeholder='手机' bindinput='mobilephone' placeholder-class='place'/>
+    </view>
+
+    <view class='base_list'>
+      <view class='list_name'>邮箱</view>
+     <input type='text' value='{{resultData.email}}' placeholder='邮箱' bindinput='email' placeholder-class='place'/>
+    </view>
+    <view class='base_list borno'>
+      <view class='list_name'>微信</view>
+     <input type='text' value='{{resultData.wechatnum}}' placeholder='微信' bindinput='wechatnum' placeholder-class='place'/>
+    </view>
+  </view>
+  <view class='base_info mt50'>
+    <view class='base_list'>
+      <view class='list_name'>地址</view>
+     <input type='text' value='{{resultData.companyaddress}}' placeholder='地址' bindinput='companyaddress' placeholder-class='place'/>
+    </view>
+  </view>
+  <view class='base_info mt50'>
+    <view class='base_list'>
+      <button class='saveInfo' bindtap='saveInfo'>保存</button>
+    </view>
+  </view>
+</view>

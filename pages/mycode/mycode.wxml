@@ -1,0 +1,7 @@
+
+<view class='qcode_div'>
+  <canvas canvas-id='mycanvas' style='width:100%;height:100%' bindlongtap='scanCode'></canvas>
+</view>
+<view class='btn_div'>
+  <button class='save_phone' open-type='share'>发送给好友</button>
+</view>

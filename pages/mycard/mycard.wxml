@@ -1,0 +1,103 @@
+<view class='view_container'>
+  <view class='card'>
+    <view class='card_left'>
+      <block wx:if='{{resultData.realname == null || resultData.realname == ""}}'>
+        <view class='card_name'>{{resultData.nickname}}</view>
+      </block>
+      <block wx:else>
+        <view class='card_name'>{{resultData.realname}}</view>
+      </block>
+        
+      <view class='card_phone'>{{resultData.mobilephone}}</view>
+      <view class='card_job'>
+        <text class='card_job'>{{resultData.department}}</text> |
+        <text class='card_job'>{{resultData.job}}</text>
+      </view>
+      <view class='card_company'>{{resultData.companyname}}</view>
+    </view>
+    <view class='card_right'>
+      <view class='card_img'>
+        <image src='{{resultData.headimg}}'></image>
+      </view>
+      <view class='editInfo' bindtap='editInfo'>编辑</view>
+    </view>
+  </view>
+  <view class='base_info'>
+    <!--微信-->
+    <block wx:if='{{resultData.wechatnum == null || resultData.wechatnum == ""}}'>
+    </block>
+    <block wx:else>
+      <view class='base_list'>
+        <view class='list_left'>
+          <image src='../../images/wechat.png'></image>
+          <text class='list_content' bindtap='copywx'>{{resultData.wechatnum}}</text>
+        </view>
+        <view class='list_right'>
+          <text class='list_tip'>></text>
+        </view>
+      </view>
+    </block>
+    
+    <!--手机号-->
+    <block wx:if='{{resultData.mobilephone == null || resultData.mobilephone == ""}}'>
+    </block>
+    <block wx:else>
+      <view class='base_list'>
+        <view class='list_left'>
+          <image src='../../images/phone.png'></image>
+          <text class='list_content' bindtap='phoneContact'>{{resultData.mobilephone}}</text>
+        </view>
+        <view class='list_right'>
+          <text class='list_tip'>></text>
+        </view>
+      </view>
+    </block>
+    
+    <!--邮箱-->
+    <block wx:if='{{resultData.email == null || resultData.email == ""}}'>
+    </block>
+    <block wx:else>
+      <view class='base_list'>
+        <view class='list_left'>
+          <image src='../../images/mail.png'></image>
+          <text class='list_content'>{{resultData.email}}</text>
+        </view>
+        <view class='list_right'>
+          <text class='list_tip'>></text>
+        </view>
+      </view>
+    </block>
+    
+    <!--公司名称-->
+    <block wx:if='{{resultData.companyname == null || resultData.companyname == ""}}'>
+    </block>
+    <block wx:else>
+      <view class='base_list'>
+        <view class='list_left'>
+          <image src='../../images/company.png'></image>
+          <text class='list_content'>{{resultData.companyname}}</text>
+        </view>
+        <view class='list_right'>
+          <text class='list_tip'>></text>
+        </view>
+      </view>  
+    </block>
+    
+    <!--公司地址-->
+    <block wx:if='{{resultData.companyaddress == null || resultData.companyaddress == ""}}'>
+    </block>
+    <block wx:else>
+      <view class='base_list'>
+        <view class='list_left'>
+          <image src='../../images/address.png'></image>
+          <text class='list_content' bindtap='seeAddress'>{{resultData.companyaddress}}</text>
+        </view>
+        <view class='list_right'>
+          <text class='list_tip'>></text>
+        </view>
+      </view>
+    </block>
+     
+  </view>
+  <button class='save_phone' open-type='share'>发送给好友</button>
+</view>

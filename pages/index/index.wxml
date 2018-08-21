@@ -1,0 +1,68 @@
+<view class='view_container'>
+  
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='authBtn'>授权登录</button>
+  <block wx:else>
+    <!--<view class='card' bindtap='seeDetail'>
+      <view class='card_left'>
+        <view class='card_name'>万勇</view>
+        <view class='card_phone'>15861803918</view>
+        <view class='card_job'>
+          <text class='card_job'>南京智械信息技术有限公司</text>
+        </view>
+      </view>
+      <view class='card_right'>
+        <view class='card_img'>
+          <image src='../../images/my.png'></image>
+        </view>
+      </view>
+    </view>-->
+    <block wx:if="{{!hasYXCInfo}}">
+      <view class='card' bindtap='seeDetail'>
+        <view class='card_left'>
+          <view class='card_name'>{{userInfo.nickName}}</view>
+          <view class='card_phone'></view>
+          <view class='card_job'>
+            <text class='card_job'></text>
+          </view>
+        </view>
+        <view class='card_right'>
+          <view class='card_img'>
+            <image src='{{userInfo.avatarUrl}}'></image>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='card' id='{{userInfo.id}}' bindtap='seeDetail'>
+        <view class='card_left'>
+          <block wx:if="{{userInfo.realname == null}}">
+            <view class='card_name'>{{userInfo.nickname}}</view>
+          </block>
+          <block wx:else>
+            <view class='card_name'>{{userInfo.realname}}</view>
+          </block>
+          <view class='card_phone'>{{userInfo.mobilephone}}</view>
+          <view class='card_job'>
+            <text class='card_job'>{{userInfo.companyname}}</text>
+          </view>
+        </view>
+        <view class='card_right'>
+          <view class='card_img'>
+            <image src='{{userInfo.headimg}}'></image>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!--<view class='recentSee'>
+      <view class='recentSee_title'>历史查看</view>
+      <view class='recentSee_list' bindtap='seeRecentDetail'>
+        <text class='recentSee_name'>万勇</text>
+        <text class='recentSee_more'>></text>
+      </view>
+      <view class='recentSee_list' bindtap='seeRecentDetail'>
+        <text class='recentSee_name'>万勇</text>
+        <text class='recentSee_more'>></text>
+      </view>
+    </view>-->
+  </block>
+</view>

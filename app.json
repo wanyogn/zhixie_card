@@ -1,0 +1,38 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/card/card",
+    "pages/mycard/mycard",
+    "pages/editcard/editcard",
+    "pages/my/my",
+    "pages/mycode/mycode",
+    "pages/seecard/seecard"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f7f7f7",
+    "navigationBarTitleText": "智械名片",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "grey",
+    "selectedColor": "#43c531",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_press.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_press.png"
+      }
+    ]
+  }
+}

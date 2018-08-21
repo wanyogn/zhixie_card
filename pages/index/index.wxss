@@ -1,0 +1,79 @@
+page {
+  display: block;
+  min-height: 100%;
+  background-color:#f7f7f7;
+}
+.view_container{
+  margin: 30rpx 30rpx 0 30rpx;
+}
+.authBtn{
+  margin-top: 50%;
+  color: #888888
+}
+.card{
+  height: 150rpx;
+  padding: 50rpx 40rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 1px 1px 1px #888888,-1px -1px 1px #888888;
+  position: relative
+}
+.card_left{
+  float: left;
+}
+.card_right{
+  float: right
+}
+.card_name{
+  font-size: 44rpx;
+  font-weight: 550;
+  color: #000;
+}
+.card_phone{
+  margin-top: 20rpx;
+  font-size: 26rpx;
+}
+.card_job{
+  margin-top: 10rpx;
+  font-size: 26rpx;
+}
+.card_company{
+  font-size: 26rpx;
+  position: absolute;
+  bottom: 50rpx;
+}
+.card_img{
+  width: 140rpx;
+  height: 140rpx;
+  background: #fff;
+  border-radius: 50%;
+}
+.card_img image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.recentSee{
+  margin-top: 30rpx;
+}
+.recentSee_title{
+  font-size: 28rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #e6e6e6
+}
+.recentSee_list{
+  width: 100%;
+  height: 70rpx;
+  border-bottom: 1px solid #e6e6e6;
+
+}
+.recentSee_name{
+  float: left;
+  line-height: 70rpx;
+  color: #888888
+}
+.recentSee_more{
+  float: right;
+  line-height: 70rpx;
+  color: #888888
+}

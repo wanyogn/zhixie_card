@@ -1,0 +1,97 @@
+<view class='view_container'>
+  <view class='card'>
+    <view class='card_left'>
+      <view class='card_name'>{{resultData.realname}}</view>
+      <view class='card_phone'>{{resultData.mobilephone}}</view>
+      <view class='card_job'>
+        <text class='card_job'>{{resultData.department}}</text> |
+        <text class='card_job'>{{resultData.job}}</text>
+      </view>
+      <view class='card_company'>{{resultData.companyname}}</view>
+    </view>
+    <view class='card_right'>
+      <view class='card_img'>
+        <image src='../../images/my.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='info_statistics'>
+    <view class='statistics_content'>
+      <view class='content_main'>
+        <image src='../../images/zan.png' class='content_image'></image>
+        <view>点赞37</view>
+      </view>
+      
+    </view>
+    <view class='statistics_content'>
+      <view class='content_main'>
+        <image src='../../images/cha.png' class='content_image'></image>
+        <view>查看<text>{{resultData.viewed}}</text></view>
+      </view>
+    </view>
+    <view class='statistics_content special_content'>
+      <view class='content_main'>
+       <button open-type='share'> <image src='../../images/zhuan.png' style='margin-left:-30rpx' class='zhuan_image'></image></button>
+        <view>转发52</view>
+      </view>
+    </view>
+  </view>
+  <view class='contact_view'>
+    <button class='phone_call' bindtap='phoneContact'>拨打电话咨询</button>
+    <button class='wechat_call' open-type='contact'>在线咨询</button>
+    <view style='clear:both'></view>
+  </view>
+  <view class='base_info'>
+    <!--微信-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/wechat.png'></image>
+        <text class='list_content' bindtap='copywx'>{{resultData.wechatnum}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view> 
+    <!--手机号-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/phone.png'></image>
+        <text class='list_content' bindtap='phoneContact'>{{resultData.mobilephone}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view>
+    <!--邮箱-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/mail.png'></image>
+        <text class='list_content'>{{resultData.email}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view>
+    <!--公司名称-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/company.png'></image>
+        <text class='list_content'>{{resultData.companyname}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view>  
+    <!--公司地址-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/address.png'></image>
+        <text class='list_content' bindtap='seeAddress'>{{resultData.companyaddress}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view> 
+  </view>
+  <button class='save_phone' bindtap='savePhone'>保存到通讯录</button>
+</view>

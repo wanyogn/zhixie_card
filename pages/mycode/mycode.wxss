@@ -1,0 +1,17 @@
+/* pages/mycode/mycode.wxss */
+.qcode_div{
+  width: 686rpx;
+  height: 686rpx;
+  background:#f1f1f1;
+  margin:auto;
+}
+.btn_div{
+  padding:0 20rpx;
+}
+.save_phone{
+  margin-top: 30rpx;
+  background: #3fcf94;
+  border: #3fcf94;
+  color: #fff;
+  font-size: 30rpx;
+}

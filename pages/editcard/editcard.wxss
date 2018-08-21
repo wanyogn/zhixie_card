@@ -1,0 +1,68 @@
+/* pages/editcard/editcard.wxss */
+.view_container{
+  background: #f7f7f7;
+  padding: 0rpx 0rpx 0 0rpx;
+}
+/*基本信息*/
+.base_info{
+  background: #fff;
+  padding: 0rpx 30rpx 0 30rpx;
+  
+}
+.user_img{
+  width: 150rpx;
+  height: 150rpx;
+  border: 1px solid #000;
+  border-radius: 50%;
+  margin: 20rpx auto 0 auto;
+}
+.user_img image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.base_list{
+  width: 100%;
+  height: 80rpx;
+  border-bottom: 1px solid #efefef;
+  display: flex;
+  flex-direction: row;
+  line-height: 80rpx;
+}
+.list_name{
+  font-size: 30rpx;
+  color: #888888
+}
+.list_content{
+  font-size: 30rpx;
+  color: #888888;
+  margin-left: 100rpx;
+}
+.base_list input{
+  height: 80rpx;
+  font-size: 30rpx;
+  color: #888888;
+  margin-left: 100rpx;
+}
+.borno{
+  border-bottom: none;
+}
+.mt50{
+  margin-top: 50rpx;
+}
+.saveInfo{
+  width: 100%;
+  background: #3fcf94;
+  border: #3fcf94;
+  color: #fff;
+  font-size: 30rpx;
+}
+.picker{
+  height: 80rpx;
+  font-size: 30rpx;
+  color: #888888;
+  margin-left: 100rpx;
+}
+.place{
+  color: #e0e0e0;
+}
