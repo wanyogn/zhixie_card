@@ -87,7 +87,7 @@ Page({
       let classify = e.currentTarget.dataset.type;
       let userid = app.globalData.userid;
       wx.navigateTo({
-        url: '../seecard/seecard?id=' + userid+"&classify="+classify,
+        url: '../seecard/seecard?id=' + userid+"&classify="+classify+"&opertype=2",
       })
     } else {
       wx.showToast({

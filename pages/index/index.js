@@ -64,7 +64,7 @@ Page({
           })
         }
         that.gainUser(app.globalData.unionid);
-      });
+      },function(res){});
       wx.hideLoading()
     });    
   },

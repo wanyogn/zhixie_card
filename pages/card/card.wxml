@@ -11,15 +11,20 @@
     </view>
     <view class='card_right'>
       <view class='card_img'>
-        <image src='../../images/my.png'></image>
+        <block wx:if='{{resultData.headimg == null || resultData.headimg == ""}}'>
+          <image src='../../images/my.png'></image>
+        </block>
+        <block wx:else>
+          <image src='{{resultData.headimg}}'></image>
+        </block>
       </view>
     </view>
   </view>
   <view class='info_statistics'>
-    <view class='statistics_content'>
+    <view class='statistics_content' data-num='{{dzNum}}' bindtap='bindDZ'>
       <view class='content_main'>
         <image src='../../images/zan.png' class='content_image'></image>
-        <view>点赞37</view>
+        <view>点赞<text class='dz_num'>{{dzNum}}</text></view>
       </view>
       
     </view>
@@ -32,7 +37,7 @@
     <view class='statistics_content special_content'>
       <view class='content_main'>
        <button open-type='share'> <image src='../../images/zhuan.png' style='margin-left:-30rpx' class='zhuan_image'></image></button>
-        <view>转发52</view>
+        <view>转发<text>{{resultData.forward}}</text></view>
       </view>
     </view>
   </view>

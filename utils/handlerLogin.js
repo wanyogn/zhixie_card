@@ -53,7 +53,7 @@ function login(callback) {
     }
   })
 }
-function getUserInfo(callback){
+function getUserInfo(callback,failback){
   let userData = null;
   // 获取用户信息
   wx.getSetting({
@@ -68,7 +68,7 @@ function getUserInfo(callback){
           }
         })
       } else {
-
+        failback(res);
       }
     }
   })

@@ -15,8 +15,9 @@ Page({
    */
   onLoad: function (options) {
     let classify = options.classify;
+    let opertype = options.opertype;
     let that = this;
-    util.sendAjax('https://www.yixiecha.cn/wx_card/queryViewCardById.php', { userid: app.globalData.userid, classifytype:classify},function(res){
+    util.sendAjax('https://www.yixiecha.cn/wx_card/queryViewCardById.php', { userid: app.globalData.userid, classifytype:classify,opertype:opertype},function(res){
       that.setData({
         resultData:res
       })
