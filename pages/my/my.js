@@ -70,7 +70,7 @@ Page({
     if (app.globalData.userid != "") {
       let userid = app.globalData.userid;
       wx.navigateTo({
-        url: '../mycard/mycard?id=' + userid,
+        url: '../card/card?userid=' + userid,
       })
     }else{
       wx.showToast({
