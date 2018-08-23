@@ -2,14 +2,26 @@
 <view class='view_container'>
   <block wx:for="{{resultData}}" wx:for-item="item">
     <view class='base_info'>
-      <view class='base_list' id='{{item.viewedid}}' bindtap='seecard'>
-        <view class='list_left'>
-          <text class='list_content'>{{item.userInfo.realname}}</text>
+      <block wx:if='{{classify=="viewid"}}'>
+        <view class='base_list' id='{{item.viewedid}}' bindtap='seecard'>
+          <view class='list_left'>
+            <text class='list_content'>{{item.userInfo.realname}}</text>
+          </view>
+          <view class='list_right'>
+            <text class='list_tip'>></text>
+          </view>
         </view>
-        <view class='list_right'>
-          <text class='list_tip'>></text>
+      </block>
+      <block wx:else>
+        <view class='base_list' id='{{item.viewid}}' bindtap='seecard'>
+          <view class='list_left'>
+            <text class='list_content'>{{item.userInfo.realname}}</text>
+          </view>
+          <view class='list_right'>
+            <text class='list_tip'>></text>
+          </view>
         </view>
-      </view>
+      </block>
     </view>
   </block>
 </view>

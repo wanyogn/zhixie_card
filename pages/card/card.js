@@ -155,9 +155,10 @@ Page({
     }
     return {
       title: '智械名片',
-      path: '/page/card/card?userid='+data.id,
+      path: '/pages/card/card?userid='+data.id,
       success: function (resu) {
         // 转发成功
+
         if (resu.errMsg == "shareAppMessage:ok") {
           if (that.data.currentId != null && that.data.currentId != ""){
             util.sendAjax('https://www.yixiecha.cn/wx_card/insertViewCard.php', { viewid: that.data.currentId, viewedid: data.id, opertype: 3 }, function (res) {

@@ -16,7 +16,7 @@
   <view class='base_info'>
     <view class='base_list' bindtap='mycode'>
       <view class='list_left'>
-        <image src='../../images/wechat.png'></image>
+        <image src='../../images/code.png'></image>
         <text class='list_content'>我的二维码</text>
       </view>
       <view class='list_right'>
@@ -27,7 +27,7 @@
   <view class='base_info'>
     <view class='base_list' bindtap='mycard'>
       <view class='list_left'>
-        <image src='../../images/wechat.png'></image>
+        <image src='../../images/card.png'></image>
         <text class='list_content' >我的名片</text>
       </view>
       <view class='list_right'>
@@ -36,7 +36,7 @@
     </view>
     <view class='base_list' data-type='viewid' bindtap='seecard'>
       <view class='list_left'>
-        <image src='../../images/wechat.png'></image>
+        <image src='../../images/card.png'></image>
         <text class='list_content'>我看过的名片</text>
       </view>
       <view class='list_right'>
@@ -45,7 +45,7 @@
     </view>
     <view class='base_list' data-type='viewedid' bindtap='seecard'>
       <view class='list_left'>
-        <image src='../../images/wechat.png'></image>
+        <image src='../../images/card.png'></image>
         <text class='list_content'>谁看过我</text>
       </view>
       <view class='list_right'>

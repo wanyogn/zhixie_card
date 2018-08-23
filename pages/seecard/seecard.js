@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    resultData:{}
+    resultData:{},
+    classify:''
   },
 
   /**
@@ -19,7 +20,8 @@ Page({
     let that = this;
     util.sendAjax('https://www.yixiecha.cn/wx_card/queryViewCardById.php', { userid: app.globalData.userid, classifytype:classify,opertype:opertype},function(res){
       that.setData({
-        resultData:res
+        resultData:res,
+        classify:classify
       })
     })
   },
