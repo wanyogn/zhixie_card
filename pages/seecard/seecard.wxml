@@ -5,7 +5,12 @@
       <block wx:if='{{classify=="viewid"}}'>
         <view class='base_list' id='{{item.viewedid}}' bindtap='seecard'>
           <view class='list_left'>
-            <text class='list_content'>{{item.userInfo.realname}}</text>
+            <block wx:if='{{item.userInfo.realname == null}}'>
+              <text class='list_content'>{{item.userInfo.nickname}}</text>
+            </block>
+            <block wx:else>
+              <text class='list_content'>{{item.userInfo.realname}}</text>
+            </block>
           </view>
           <view class='list_right'>
             <text class='list_tip'>></text>
@@ -15,7 +20,12 @@
       <block wx:else>
         <view class='base_list' id='{{item.viewid}}' bindtap='seecard'>
           <view class='list_left'>
-            <text class='list_content'>{{item.userInfo.realname}}</text>
+            <block wx:if='{{item.userInfo.realname == null}}'>
+              <text class='list_content'>{{item.userInfo.nickname}}</text>
+            </block>
+            <block wx:else>
+              <text class='list_content'>{{item.userInfo.realname}}</text>
+            </block>
           </view>
           <view class='list_right'>
             <text class='list_tip'>></text>

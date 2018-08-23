@@ -1,7 +1,12 @@
 <view class='view_container'>
   <view class='card'>
     <view class='card_left'>
-      <view class='card_name'>{{resultData.realname}}</view>
+      <block wx:if='{{resultData.realname == null}}'>
+        <view class='card_name'>{{resultData.nickname}}</view>
+      </block>
+      <block wx:else>
+        <view class='card_name'>{{resultData.realname}}</view>
+      </block>
       <view class='card_phone'>{{resultData.mobilephone}}</view>
       <view class='card_job'>
         <text class='card_job'>{{resultData.department}}</text> |
