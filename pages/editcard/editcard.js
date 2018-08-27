@@ -96,6 +96,7 @@ Page({
       companyaddress: e.detail.value
     })
   },
+  /*保存并生成名片 */
   saveInfo:function(){
     let id             = this.data.id;
     let name           = this.data.name;
@@ -106,24 +107,60 @@ Page({
     let email          = this.data.email;
     let wechatnum      = this.data.wechatnum;
     let companyaddress = this.data.companyaddress;
-    let data = {id:id,name:name,department:department,job:job,companyname:companyname,mobilephone:mobilephone,
-                email:email,wechatnum:wechatnum,companyaddress:companyaddress};
+    let that = this;
+    if(email.trim() != ""){
+      if (!util.IsEmail(email.trim())){
+        wx.showToast({
+          title: '邮箱不合法',
+          icon: 'none',
+          mask: true,
+          duration: 2000
+        })
+        return;
+      }else{
+        util.sendAjax('https://www.yixiecha.cn/wx_card/checkEmailExist.php', { email: email }, function (res) {
+          if (res > 0 && res != id) {
+            wx.showToast({
+              title: '邮箱已经存在',
+              icon:'none',
+              mask: true,
+              duration: 2000
+            })
+            return;
+          }else{
+            let data = {
+              id: id, name: name, department: department, job: job, companyname: companyname, mobilephone: mobilephone,
+              email: email, wechatnum: wechatnum, companyaddress: companyaddress
+            };
+            that.save(data);
+          }
+        });
+      }
+    }else{
+      let data = {
+        id: id, name: name, department: department, job: job, companyname: companyname, mobilephone: mobilephone,
+        email: email, wechatnum: wechatnum, companyaddress: companyaddress
+      };
+      that.save(data);
+    }
+  },
+  save:function(data){
     util.sendAjax('https://www.yixiecha.cn/wx_card/update_user_info.php', data, function (res) {
-      if(res == 'success'){
+      if (res == 'success') {
         wx.showToast({
           title: '保存成功',
           icon: 'success',
-          mask:true,
+          mask: true,
           duration: 2000,
-          success:function(){
+          success: function () {
             var pages = getCurrentPages();
             var beforePage = pages[pages.length - 2];
             beforePage.setData({
-              id:id
+              id: data.id
             })
             wx.navigateBack({
               success: function () {
-                beforePage.onLoad(); 
+                beforePage.onLoad();
               }
             });
           }
@@ -131,4 +168,15 @@ Page({
       }
     })
   },
+  /*添加业务信息 */
+  addService:function(){
+    let companyname = this.data.companyname;
+    if(companyname.trim() == ""){
+      wx.showToast({
+        title: '公司不能为空',
+        mask: true,
+        duration: 2000
+      })
+    }
+  }
 })

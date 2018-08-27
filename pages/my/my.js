@@ -50,6 +50,7 @@ Page({
   onShareAppMessage: function () {
     
   },
+  /*我的二维码 */
   mycode:function(){
     if (app.globalData.userid != "") {
       let userid = app.globalData.userid;
@@ -66,6 +67,7 @@ Page({
     }
     
   },
+  /*我的名片 */
   mycard:function(){
     if (app.globalData.userid != "") {
       let userid = app.globalData.userid;
@@ -81,8 +83,8 @@ Page({
       })
     }
   },
+  /*谁看过我、我看过谁 */
   seecard:function(e){
-    
     if (app.globalData.userid != "") {
       let classify = e.currentTarget.dataset.type;
       let userid = app.globalData.userid;
@@ -97,5 +99,35 @@ Page({
         duration: 2000
       })
     }
+  },
+  /*我的基本信息 */
+  updateInfo:function(){
+    if (app.globalData.userid != "") {
+      wx.navigateTo({
+        url: '../editcard/editcard?id=' + app.globalData.userid,
+      })
+    }else{
+      wx.showToast({
+        title: '请先登录授权',
+        mask: true,
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+  mybaseInfo:function(){
+    if (app.globalData.userid != "") {
+      wx.navigateTo({
+        url: '../mycard/mycard?id=' + app.globalData.userid,
+      })
+    } else {
+      wx.showToast({
+        title: '请先登录授权',
+        mask: true,
+        icon: 'none',
+        duration: 2000
+      })
+    }
   }
+
 })

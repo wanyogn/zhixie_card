@@ -8,3 +8,10 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+text{
+  font-family: "微软雅黑";
+  font-size: 20rpx;
+  color: #898989;
+  margin: 0px;
+  padding: 0px;
+}

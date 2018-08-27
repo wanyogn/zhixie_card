@@ -58,7 +58,8 @@
   </view>
   <view class='base_info mt50'>
     <view class='base_list'>
-      <button class='saveInfo' bindtap='saveInfo'>保存</button>
+      <button class='saveInfo' bindtap='saveInfo'>保存并生成名片</button>
+      <button class='saveInfo' bindtap='addService'>继续添加业务信息</button>
     </view>
   </view>
 </view>

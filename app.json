@@ -1,6 +1,7 @@
 {
   "pages": [
-    
+    "pages/companySel/companySel",
+    "pages/business/business",
     "pages/index/index",
     "pages/logs/logs",
     "pages/card/card",
@@ -9,6 +10,7 @@
     "pages/my/my",
     "pages/mycode/mycode",
     "pages/seecard/seecard"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

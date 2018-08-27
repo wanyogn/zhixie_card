@@ -19,7 +19,6 @@
       <view class='card_img'>
         <image src='{{resultData.headimg}}'></image>
       </view>
-      <view class='editInfo' bindtap='editInfo'>编辑</view>
     </view>
   </view>
   <view class='base_info'>

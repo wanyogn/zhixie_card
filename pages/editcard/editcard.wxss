@@ -50,7 +50,7 @@
   margin-top: 50rpx;
 }
 .saveInfo{
-  width: 100%;
+  width: 48%;
   background: #3fcf94;
   border: #3fcf94;
   color: #fff;
