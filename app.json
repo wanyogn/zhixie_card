@@ -1,7 +1,6 @@
 {
   "pages": [
-    "pages/companySel/companySel",
-    "pages/business/business",
+    
     "pages/index/index",
     "pages/logs/logs",
     "pages/card/card",
@@ -9,8 +8,11 @@
     "pages/editcard/editcard",
     "pages/my/my",
     "pages/mycode/mycode",
-    "pages/seecard/seecard"
-    
+    "pages/seecard/seecard",
+    "pages/companySel/companySel",
+    "pages/business/business",
+    "pages/productList/product_list",
+    "pages/areaSel/areaSel"
   ],
   "window": {
     "backgroundTextStyle": "light",

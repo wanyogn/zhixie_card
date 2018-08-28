@@ -14,7 +14,9 @@ Page({
     dzNum:'',
     ifLike:false, //是否点赞,用于页面中按钮
     isDZ:false,//用于判断数据库中是否存在点赞记录
-    currentId:''
+    currentId:'',
+    searchData:[],
+    productCount:0
   },
 
   /**
@@ -105,6 +107,7 @@ Page({
             resultData: res,
             dzNum:resu.dz
           })
+          that.myProduct();
         })
         that.insertViewRecord(res.id);
       }
@@ -297,5 +300,37 @@ Page({
         }
       })
     }
+  },
+  myProduct:function(){
+    let that = this;
+    let userid = this.data.currentId;
+    util.sendAjax('https://www.yixiecha.cn/wx_card/selectProducts.php',{userid:userid,classtype:'size',size:2},function(data){
+      for (let index = 0;index < data.length;index++) {
+        data[index].main_class = util.getMain_class(data[index].main_class);
+        data[index].src_loc = util.getSrc_loc(data[index].src_loc);
+        data[index].product_mode = util.getText(data[index].product_mode, 20);
+        var maker_name = data[index].maker_name_ch;
+        if (maker_name == '') {
+          maker_name = data[index].agent;
+        }
+        data[index].maker_name = maker_name;
+        data[index].maker_name_ch = util.getText(maker_name, 20);
+        data[index].product_name_ch = util.getText(data[index].product_name_ch, 10);
+        if (data[index].picture_addr != undefined) {
+          data[index].picture_addr = "https://www.yixiecha.cn/yixiecha/upload/" + data[index].picture_addr;
+        } else {
+          data[index].picture_addr = "../../images/product.png";
+        }
+      }
+      that.setData({
+        searchData:data,
+        productCount:data.length
+      })
+    })
+  },
+  seeMore:function(){
+    wx.navigateTo({
+      url: '../productList/product_list?userid=' + this.data.currentId,
+    })
   }
 })

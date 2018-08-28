@@ -104,4 +104,37 @@
     </view> 
   </view>
   <button class='save_phone' bindtap='savePhone'>保存到通讯录</button>
+  <view class='base_info'>
+    <view class='base_title'>我的业务</view>
+    <view class='service_title'>
+      <text class='base_title left'>我负责的产品</text>
+      <text class='right' bindtap='seeMore'>全部产品</text>
+      <text class='clear'></text>
+    </view>
+    <view class='base_main'>
+      <block wx-if='{{productCount > 0}}'>
+        <block wx:for="{{searchData}}" wx:for-item="item">
+          <view class='item'>
+            <view class='item_main'>
+              <view class='item_main_left'>
+                <image class='item_main_left_img' src='{{item.picture_addr}}'/>
+              </view>
+              <view class='item_main_right'>
+                <view class='title_content'>
+                  <text class='title' data-id="{{item.id}}">{{item.product_name_ch}}</text>
+                  <text class='{{item.product_state == "有效"?"y_status":"w_status"}}'>{{item.product_state}}</text>
+                </view>
+                <text class='cdgs'>产地归属：{{item.src_loc}}</text>
+                <text class='gllb'>管理类别：{{item.main_class}}</text>
+                <text class='flml'>型号规格：{{item.product_mode}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:else>
+        <view class='none_info'>您还没有添加负责的产品</view>
+      </block>
+    </view>
+  </view>
 </view>

@@ -1,0 +1,2 @@
+/* pages/product_list/product_list.wxss */
+@import "../business/business.wxss";

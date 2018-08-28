@@ -1,0 +1,22 @@
+<view class='main'>  
+  <block wx:for="{{productData}}" wx:for-item="item">
+    <view class='item'>
+      <view class='item_main'>
+        <view class='item_main_left'>
+          <image class='item_main_left_img' src='{{item.picture_addr}}'/>
+        </view>
+        <view class='item_main_right'>
+          <!--<text class='title' bindtap='bindSearchTap' data-id="{{item.id}}">{{item.product_name_ch}}</text>-->
+          <view class='title_content'>
+            <text class='title' data-id="{{item.id}}">{{item.product_name_ch}}</text>
+            <text class='{{item.product_state == "有效"?"y_status":"w_status"}}'>{{item.product_state}}</text>
+          </view>
+          <text class='zcgs'>注册公司：{{item.maker_name_ch}}</text>
+          <text class='cdgs'>产地归属：{{item.src_loc}}</text>
+          <text class='gllb'>管理类别：{{item.main_class}}</text>
+          <text class='flml'>型号规格：{{item.product_mode}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

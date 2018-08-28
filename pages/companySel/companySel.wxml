@@ -1,7 +1,7 @@
 <view class='content_container'>
   <view class='header'>
     <view class='input'>
-      <input type='text' placeholder='企业名称' placeholder-class="place-holder" bindinput='keyInput' value=''/>
+      <input type='text' placeholder='企业名称' placeholder-class="place-holder" bindinput='keyInput' value='{{keyword}}'/>
       <button bindtap='searchKey'><icon type="search" color='#fff'/></button>
     </view>
   </view>

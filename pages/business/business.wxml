@@ -1,31 +1,52 @@
 <view class='content_container'>
   <view class='header'>
-    <view class='input'>
+    <!--<view class='input'>
       <input type='text' placeholder='企业名称' placeholder-class="place-holder" bindinput='keyInput' value=''/>
       <button bindtap='searchKey'><icon type="search" color='#fff'/></button>
+    </view>-->
+    <view class='main_left'>
+      <text class='key'>{{keyword}}</text>
+      <view class='product'>共有<text class='num'>{{matchCount}}</text>个有效注册产品</view>
+      <text>请选择与您业务有关的产品</text>
     </view>
+    <view class='main_right'>
+      <text class='chooseAll'>勾选全部</text>
+    </view>
+    <view class='clear'></view>
   </view>
-  <block wx:for="{{searchDatas}}" wx:for-item="item">
-    <view class="content">
-      <view class='main'>
-        <view class='item'>
-          <view class='item_main'>
-            <view class='item_main_left'>
-              <image class='item_main_left_img' src='{{item.picture_addr}}'/>
-            </view>
-            <view class='item_main_right'>
-              <view class='title_content'>
-                <text class='title' bindtap='bindSearchTap' data-id="{{item.id}}">{{item.product_name_ch}}</text>
-                <text class='{{item.product_state == "有效"?"y_status":"w_status"}}'>{{item.product_state}}</text>
+  <scroll-view scroll-y style="height: {{showHeight}}px">
+    <block wx:for="{{searchDatas}}" wx:for-item="item">
+      <view class="content">
+        <view class='main'>
+          <view class='item'>
+            <view class='item_main'>
+              <view class='item_main_left'>
+                <image class='item_main_left_img' src='{{item.picture_addr}}'/>
               </view>
-              <text class='cdgs'>产地归属：{{item.src_loc}}</text>
-              <text class='gllb'>管理类别：{{item.main_class}}</text>
-              <text class='flml'>型号规格：{{item.product_mode}}</text>
+              <view class='item_main_right'>
+                <view class='title_content'>
+                  <text class='title' data-id="{{item.id}}">{{item.product_name_ch}}</text>
+                  <switch class='y_status' bindchange="switchChange" color='#f39800' id='{{item.id}}'/>
+                </view>
+                <text class='cdgs'>产地归属：{{item.src_loc}}</text>
+                <text class='gllb'>管理类别：{{item.main_class}}</text>
+                <text class='flml'>型号规格：{{item.product_mode}}</text>
+              </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
-    
-  </block>
+    </block>
+    <block wx-if='{{matchCount > hastotal}}'>
+      <view class='content'>
+        <view class='more' bindtap='seeMore'>加载更多。。。</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='more'>已加载全部。。。</view>
+    </block>
+  </scroll-view>
+  <view class='btn_main'>
+    <button class='saveInfo' bindtap='saveInfo'>保存并进行区域选择</button>
+  </view>
 </view>

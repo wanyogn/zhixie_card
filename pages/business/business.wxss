@@ -1,6 +1,5 @@
 .header{
-  padding: 20rpx 20rpx;
-  height: 70rpx;
+  padding: 20rpx 30rpx;
   background: #efefef;
 }
 .input{
@@ -37,14 +36,14 @@
   width: 100%;
 }
 .main{
-  padding: 20rpx 30rpx 30rpx 30rpx;
+  padding: 5rpx 30rpx 5rpx 30rpx;
   background-color: #f4f4f4;
 }
 .item{
   width: 100%;
-  height: 225rpx;
+  height: 200rpx;
   background-color: #fff;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 
 }
 .item_main{
@@ -84,17 +83,7 @@
   float: right;
   font-size: 28rpx;
   padding: 2rpx 10rpx;
-  background-color: #f39800;
-  color: #fff;
-  border-radius: 10rpx;
-}
-.w_status{
-  float: right;
-  font-size: 28rpx;
-  padding: 2rpx 10rpx;
-  background-color: #dadada;
-  color: #fff;
-  border-radius: 10rpx;
+  zoom: 0.6;
 }
 .flml{
   
@@ -112,4 +101,45 @@
 }
 .zcgs_content{
 color: #f39800
+}
+.more{
+  font-size: 26rpx;
+  text-align: center;
+  color: #808080;
+  padding: 10rpx 0;
+  background: #f4f4f4;
+}
+.main_left{
+  display: flex;
+  flex-direction: column;
+}
+.chooseAll{
+  font-size: 30rpx;
+}
+.main_left{
+  float: left
+}
+.main_right{
+  float: right
+}
+.clear{
+  clear: both
+}
+.btn_main{
+  padding: 10rpx 20rpx
+}
+.saveInfo{
+  width: 48%;
+  background: #f39800;
+  border: #f39800;
+  color: #fff;
+  font-size: 30rpx;
+}
+.product{
+  font-size:20rpx;
+  color:#898989;
+
+}
+.num,.key{
+  color: #f39800
 }

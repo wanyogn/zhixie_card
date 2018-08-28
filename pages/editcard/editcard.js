@@ -98,6 +98,10 @@ Page({
   },
   /*保存并生成名片 */
   saveInfo:function(){
+    this.saveMain("only");
+  },
+  
+  saveMain:function(tip){
     let id             = this.data.id;
     let name           = this.data.name;
     let department     = this.data.department;
@@ -132,7 +136,26 @@ Page({
               id: id, name: name, department: department, job: job, companyname: companyname, mobilephone: mobilephone,
               email: email, wechatnum: wechatnum, companyaddress: companyaddress
             };
-            that.save(data);
+            if (tip == "only") {
+              that.save(data,function(){
+                var pages = getCurrentPages();
+                var beforePage = pages[pages.length - 2];
+                beforePage.setData({
+                  id: data.id
+                })
+                wx.navigateBack({
+                  success: function () {
+                    beforePage.onLoad();
+                  }
+                });
+              });
+            } else {
+              that.save(data, function () {
+                wx.navigateTo({
+                  url: '../companySel/companySel?companyName=' + companyname,
+                })
+              });
+            }
           }
         });
       }
@@ -141,10 +164,29 @@ Page({
         id: id, name: name, department: department, job: job, companyname: companyname, mobilephone: mobilephone,
         email: email, wechatnum: wechatnum, companyaddress: companyaddress
       };
-      that.save(data);
+      if(tip == "only"){
+        that.save(data,function(){
+          var pages = getCurrentPages();
+          var beforePage = pages[pages.length - 2];
+          beforePage.setData({
+            id: data.id
+          })
+          wx.navigateBack({
+            success: function () {
+              beforePage.onLoad();
+            }
+          });
+        });
+      }else{
+        that.save(data, function () {
+          wx.navigateTo({
+            url: '../companySel/companySel?companyName=' + companyname,
+          })
+        });
+      }
     }
   },
-  save:function(data){
+  save:function(data,callback){
     util.sendAjax('https://www.yixiecha.cn/wx_card/update_user_info.php', data, function (res) {
       if (res == 'success') {
         wx.showToast({
@@ -153,7 +195,7 @@ Page({
           mask: true,
           duration: 2000,
           success: function () {
-            var pages = getCurrentPages();
+            /*var pages = getCurrentPages();
             var beforePage = pages[pages.length - 2];
             beforePage.setData({
               id: data.id
@@ -162,7 +204,8 @@ Page({
               success: function () {
                 beforePage.onLoad();
               }
-            });
+            });*/
+            callback();
           }
         })
       }
@@ -174,9 +217,12 @@ Page({
     if(companyname.trim() == ""){
       wx.showToast({
         title: '公司不能为空',
+        icon:'none',
         mask: true,
         duration: 2000
       })
+    }else{
+      this.saveMain("");
     }
   }
 })

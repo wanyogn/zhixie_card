@@ -37,8 +37,9 @@ Page({
         })
       },
     });
+    
     this.setData({
-      keyword:'南京伟思'
+      keyword:options.companyName
     })
     this.contentActive(this.data.keyword,0);
   },
