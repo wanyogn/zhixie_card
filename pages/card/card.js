@@ -16,7 +16,9 @@ Page({
     isDZ:false,//用于判断数据库中是否存在点赞记录
     currentId:'',
     searchData:[],
-    productCount:0
+    productCount:0,
+    searchArea:[],
+    areaCount:0
   },
 
   /**
@@ -108,6 +110,7 @@ Page({
             dzNum:resu.dz
           })
           that.myProduct();
+          that.myarea();
         })
         that.insertViewRecord(res.id);
       }
@@ -325,6 +328,16 @@ Page({
       that.setData({
         searchData:data,
         productCount:data.length
+      })
+    })
+  },
+  myarea:function(){
+    let that = this;
+    let userid = this.data.currentId;
+    util.sendAjax('https://www.yixiecha.cn/wx_card/selectAreaById.php', { userid: userid}, function (data) {
+      that.setData({
+        searchArea:data,
+        areaCount:data.length
       })
     })
   },

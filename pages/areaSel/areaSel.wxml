@@ -1,2 +1,17 @@
-<!--pages/areaSel/areaSel.wxml-->
-<text>pages/areaSel/areaSel.wxml</text>
+<view class='container_main'>
+  <block wx:for="{{searchData}}" wx:for-item="item">
+    <view class='container_content mt'>
+      <view class='container_left'>
+        <view class="swiper-tab-item" data-current="{{item.title.id}}" bindtap="swichNav">{{item.title.name}}</view>
+      </view>
+      <view class='container_right'>
+        <view class="swiper-container">
+          <block wx:for="{{item.content}}" wx:for-item="idx">
+            <view class="province {{idx.selected==true?'active':''}}" data-current='{{idx.id}}' bindtap='bindCli' >{{idx.name}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+  <button class='save' bindtap='save'>保存</button>
+</view>

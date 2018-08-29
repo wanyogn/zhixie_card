@@ -252,3 +252,16 @@ color: #f39800
 .clear{
   clear: both
 }
+.area{
+  width: 20%;
+  height: 50rpx;
+  background: #f39800;
+  color: #fff;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  float: left;
+  margin-right: 10%;
+  margin-top: 10rpx;
+  border-radius: 10rpx;
+}

@@ -1,1 +1,66 @@
-/* pages/areaSel/areaSel.wxss */
+page{
+  height: 100%;
+}
+.container_main{
+  padding: 18rpx;
+  
+}
+.container_content{
+display: flex;
+  flex-direction: row;
+}
+.container_left{
+  width: 30%;
+  height: 100%;
+  /*display: flex;
+  flex-direction: column;*/
+  /*border: 1px solid #000*/
+}
+.swiper-tab-item{
+  width: 100%;
+  height: 100rpx;
+  background: #d0d0d0;
+  border-radius: 15rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #808080;
+  letter-spacing: 10rpx;
+}
+.active{
+  background: #f39800 !important
+}
+.mt{
+  margin-top: 10rpx;
+}
+.container_right{
+  margin-left: 5%;
+  width: 65%;
+}
+.province{
+  width: 25%;
+  height: 60rpx;
+  font-size: 24rpx;
+  background: #e6e6e6;
+  border-radius: 10rpx;
+  line-height: 60rpx;
+  text-align: center;
+  letter-spacing: 10rpx;
+  float: left;
+  margin-top: 10rpx;
+  margin-right: 7%;
+  border: 1rpx solid #808080;
+  color: #808080
+}
+.on{
+  background: #f39800;
+  color: #fff;
+}
+
+.save{
+  width: 100%;
+  margin-top: 100rpx;
+  background: #f39800;
+  border: #f39800;
+  color: #fff;
+  font-size: 30rpx;
+}

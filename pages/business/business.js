@@ -43,7 +43,6 @@ Page({
     let that = this;
     let data = { dotype: 'product', keyword: keyword, num: num, size: this.data.pageSize, product_state:'有效' };
     util.sendAjax('https://www.yixiecha.cn/wxsmallprogram/wx_company_detail.php', data, function (data) {
-      console.log(data);
       for (var index in data.datas) {
         data.datas[index].main_class = util.getMain_class(data.datas[index].main_class);
         data.datas[index].src_loc = util.getSrc_loc(data.datas[index].src_loc);
@@ -136,10 +135,11 @@ Page({
       for (let i = 0; i < productids.length;i++){
         str += (productids[i]+",");
       }
-      console.log(userid);
-      console.log(str);
       util.sendAjax('https://www.yixiecha.cn/wx_card/operBusiness.php',{userid:userid,productids:str},function(res){
         console.log(res);
+      })
+      wx.navigateTo({
+        url: '../areaSel/areaSel',
       })
     }
   }
