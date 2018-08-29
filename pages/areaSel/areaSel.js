@@ -25,7 +25,6 @@ Page({
           res[i].content[j].selected = false;
         }
       }
-      console.log(res)
       that.setData({
         searchData:res
       })
@@ -57,10 +56,6 @@ Page({
     })
   },
   save:function(){
-    
-    /*util.sendAjax('https://www.yixiecha.cn/wx_card/updateBusiness.php',{},function(){
-
-    })*/
     let userid = app.globalData.userid;
     let ids = this.data.chooseRes;
     if (ids.length == 0) {
