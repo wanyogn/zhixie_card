@@ -29,6 +29,35 @@ page{
   line-height: 150rpx;
   float: right
 }
+.login_view{
+  padding: 0rpx 30rpx;
+  height: 240rpx;
+}
+.login_btn{
+  height: 100%;
+  background: #fff;
+}
+.login_btn::after{
+  border: none
+}
+.login_btn image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-top: 45rpx;
+  display: flex;
+  justify-content: left;
+  float: left
+}
+.login_btn text{
+  font-size:60rpx;
+  color: #000;
+  margin-top: 45rpx;
+  line-height: 150rpx;
+  display: flex;
+  justify-content: right;
+  float: right
+}
 .base_info{
   margin-top: 40rpx;
   background: #fff;
