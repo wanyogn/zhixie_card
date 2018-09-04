@@ -12,7 +12,9 @@
     "pages/companySel/companySel",
     "pages/business/business",
     "pages/productList/product_list",
+    "pages/currentCompany/currentCompany",
     "pages/areaSel/areaSel"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

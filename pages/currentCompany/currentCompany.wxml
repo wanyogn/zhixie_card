@@ -1,0 +1,63 @@
+<view class='content_container'>
+  <view class='header'>
+    <view class='input'>
+      <view class='company_title'>您当前所填写公司为：</view>
+      <view class='company_content'>{{keyword}}</view>
+    </view>
+  </view>
+  <block wx:if='{{matchCount > 0}}'>
+    <scroll-view scroll-y style="height: {{showHeight}}px">
+      <view class="content">
+        <view class='main'>
+          <block wx:for="{{searchDatas}}" wx:for-item="item">
+            <view class="item {{item.selectedFlag==true?'selected':''}}" bindtap='choose' data-index='{{item.idx}}'>
+              <view class='item_main'>
+                <view class='item_main_right'>
+                  <text class='title'>{{item.company_name}}</text>
+                  <view class='sczz'>
+                    <text>生产资质</text>
+                    <block wx:for="{{item.production_type}}" wx:for-item="idx">
+                      <text class='sczz_t {{idx.cls}}'>{{idx.title}}</text>
+                    </block>
+                    <text style='margin-left:30rpx;'>相关产品</text>
+                    <text class='sczz_t active'>{{item.product_count}}</text>
+                  </view>
+                  <view class='sczz'>
+                    <text>经营资质</text>
+                    <block wx:for="{{item.manager_type}}" wx:for-item="idx">
+                      <text class='sczz_t {{idx.cls}}'>{{idx.title}}</text>
+                    </block>
+                    <text style='margin-left:30rpx;'>中标公告</text>
+                    <text class='sczz_t active'>{{item.tenderbid_count}}</text>
+                  </view>
+                  <view class='sczz'>
+                    <text>服务资质</text>
+                    <block wx:for="{{item.web_type}}" wx:for-item="idx">
+                      <text class='sczz_t {{idx.cls}}'>{{idx.title}}</text>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <block wx-if='{{matchCount > hastotal}}'>
+            <view class='more' bindtap='seeMore'>加载更多。。。</view>
+          </block>
+          <block wx:else>
+            <view class='more'>已加载全部。。。</view>
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='btn_main'>
+      <button class='saveInfo' bindtap='addInfo'>添加该公司产品信息</button>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='content_image'>
+      <image src='../../images/card.png' ></image>
+    </view>
+    <text class='content_text'>医械查没有查询到您公司的信息</text>
+    <button class='content_btn' bindtap='choose_other'>选择其他公司</button>
+  </block>
+</view>

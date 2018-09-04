@@ -44,3 +44,20 @@ page{
 .pdt40{
   padding-top: 40rpx;
 }
+.content_image{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 auto;
+  padding-top: 60rpx;
+}
+.content_image image{
+  width: 100%;
+  height: 100%;
+}
+.content_text{
+  font-size: 28rpx;
+  color: #e0e0e0;
+  text-align: center;
+  display: flex;
+  justify-content:center;
+}

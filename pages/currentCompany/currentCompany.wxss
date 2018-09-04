@@ -1,0 +1,42 @@
+/* pages/currentCompany/currentCompany.wxss */
+@import '../companySel/companySel.wxss';
+.input{
+  display: flex;
+  flex-direction: row
+}
+.company_title{
+  font-size: 26rpx;
+  color: #808080;
+  line-height: 70rpx;
+}
+.company_content{
+  font-size: 28rpx;
+  color: #f39800;
+  line-height: 70rpx;
+}
+.content_image{
+  width: 200rpx;
+  height: 200rpx;
+  margin: 0 auto;
+  padding-top: 60rpx;
+}
+.content_image image{
+  width: 100%;
+  height: 100%;
+}
+.content_text{
+  font-size: 28rpx;
+  color: #e0e0e0;
+  text-align: center;
+  display: flex;
+  justify-content:center;
+}
+.content_btn{
+  width: 250rpx;
+  height: 60rpx;
+  background: #f39800;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  color: #fff;
+  margin-top: 20rpx;
+}

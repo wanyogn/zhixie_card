@@ -1,37 +1,52 @@
 <!--pages/seeCard.wxml-->
 <view class='view_container'>
-  <block wx:for="{{resultData}}" wx:for-item="item">
-    <view class='base_info'>
-      <block wx:if='{{classify=="viewid"}}'>
-        <view class='base_list' id='{{item.viewedid}}' bindtap='seecard'>
-          <view class='list_left'>
-            <block wx:if='{{item.userInfo.realname == null}}'>
-              <text class='list_content'>{{item.userInfo.nickname}}</text>
-            </block>
-            <block wx:else>
-              <text class='list_content'>{{item.userInfo.realname}}</text>
-            </block>
+  <block wx:if='{{matchCount>0}}'>
+    <block wx:for="{{resultData}}" wx:for-item="item">
+      <view class='base_info'>
+        <block wx:if='{{classify=="viewid"}}'>
+          <view class='base_list' id='{{item.viewedid}}' bindtap='seecard'>
+            <view class='list_left'>
+              <block wx:if='{{item.userInfo.realname == null}}'>
+                <text class='list_content'>{{item.userInfo.nickname}}</text>
+              </block>
+              <block wx:else>
+                <text class='list_content'>{{item.userInfo.realname}}</text>
+              </block>
+            </view>
+            <view class='list_right'>
+              <text class='list_tip'>></text>
+            </view>
           </view>
-          <view class='list_right'>
-            <text class='list_tip'>></text>
+        </block>
+        <block wx:else>
+          <view class='base_list' id='{{item.viewid}}' bindtap='seecard'>
+            <view class='list_left'>
+              <block wx:if='{{item.userInfo.realname == null}}'>
+                <text class='list_content'>{{item.userInfo.nickname}}</text>
+              </block>
+              <block wx:else>
+                <text class='list_content'>{{item.userInfo.realname}}</text>
+              </block>
+            </view>
+            <view class='list_right'>
+              <text class='list_tip'>></text>
+            </view>
           </view>
-        </view>
-      </block>
-      <block wx:else>
-        <view class='base_list' id='{{item.viewid}}' bindtap='seecard'>
-          <view class='list_left'>
-            <block wx:if='{{item.userInfo.realname == null}}'>
-              <text class='list_content'>{{item.userInfo.nickname}}</text>
-            </block>
-            <block wx:else>
-              <text class='list_content'>{{item.userInfo.realname}}</text>
-            </block>
-          </view>
-          <view class='list_right'>
-            <text class='list_tip'>></text>
-          </view>
-        </view>
-      </block>
-    </view>
+        </block>
+      </view>
+    </block>
   </block>
+  <block wx:else>
+    <view class='content_image'>
+      <image src='../../images/cha.png' ></image>
+    </view>
+    <block wx:if='{{classify=="viewid"}}'>
+      <text class='content_text'>您还没有查看过任何人哦！</text>
+    </block>
+    <block wx:else>
+      <text class='content_text'>还没有任何人查看过您哦！</text>
+    </block>
+    
+  </block>
+  
 </view>

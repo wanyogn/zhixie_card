@@ -112,6 +112,16 @@ Page({
     let wechatnum      = this.data.wechatnum;
     let companyaddress = this.data.companyaddress;
     let that = this;
+    if (name.trim() == "" || department == 0 || job == 0 || companyname == "" || mobilephone == ""){
+      wx.showToast({
+        title: '请将标红的填写完整！',
+        icon: 'none',
+        mask: true,
+        duration: 2000
+      })
+      return;
+    }
+    console.log(department);
     if(email.trim() != ""){
       if (!util.IsEmail(email.trim())){
         wx.showToast({
@@ -152,7 +162,7 @@ Page({
             } else {
               that.save(data, function () {
                 wx.navigateTo({
-                  url: '../companySel/companySel?companyName=' + companyname,
+                  url: '../currentCompany/currentCompany?companyName=' + companyname,
                 })
               });
             }

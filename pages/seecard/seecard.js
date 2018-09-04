@@ -8,7 +8,8 @@ Page({
    */
   data: {
     resultData:{},
-    classify:''
+    classify:'',
+    matchCount:0
   },
 
   /**
@@ -19,8 +20,10 @@ Page({
     let opertype = options.opertype;
     let that = this;
     util.sendAjax('https://www.yixiecha.cn/wx_card/queryViewCardById.php', { userid: app.globalData.userid, classifytype:classify,opertype:opertype},function(res){
+      console.log(res.length);
       that.setData({
         resultData:res,
+        matchCount:res.length,
         classify:classify
       })
     })

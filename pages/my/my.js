@@ -199,7 +199,15 @@ Page({
     if(userid == ""){
       console.log("没有看过任何人");
     }else{
-      
+      let viewid = app.globalData.userid;
+      if (viewid != null && viewid != "") {
+        if (viewid != id) {//去除自己查看自己的情况
+          util.sendAjax('https://www.yixiecha.cn/wx_card/insertViewCard.php', { viewid: viewid, viewedid: userid, opertype: 2 }, function (res) {
+            console.log(res);
+          })
+        }
+      } else {//未授权
+      }
     }
   }
 })

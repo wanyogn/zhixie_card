@@ -108,11 +108,15 @@
     <view class='base_title'>我的业务</view>
     <view class='service_title'>
       <text class='base_title left'>我负责的产品</text>
-      <text class='right' bindtap='seeMore'>全部产品</text>
+      <block wx:if='{{productCount > 2}}'>
+        <text class='right' bindtap='seeMore'>全部产品</text>
+      </block>
+      <block wx:else>
+      </block>  
       <text class='clear'></text>
     </view>
     <view class='base_main'>
-      <block wx-if='{{productCount > 0}}'>
+      <block wx:if='{{productCount > 0}}'>
         <block wx:for="{{searchData}}" wx:for-item="item">
           <view class='item'>
             <view class='item_main'>
@@ -143,7 +147,7 @@
     <text class='clear'></text>
   </view>
   <view class='base_main'>
-    <block wx-if='{{areaCount > 0}}'>
+    <block wx:if='{{areaCount > 0}}'>
         <block wx:for="{{searchArea}}" wx:for-item="item">
           <view class='area'>{{item.name}}</view>
         </block>
