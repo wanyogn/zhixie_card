@@ -5,59 +5,54 @@ page{
 .view_container{
   width: 100%;
   height: 100%;
-  background: #f7f7f7;
+  background: #e8e8e8;
   padding: 0;
 }
+.container_content{
+  padding: 9rpx 22rpx;
+}
 .base_info{
-  
-  border-bottom: 1px solid #efefef;
+  margin-top: 20rpx;
+  height: 120rpx;
+  background: #fff;
+  border-radius: 60rpx;
+}
+.base_info image{
+  width: 100rpx;
+  height:100rpx;
+  border-radius: 50rpx;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  border: 1rpx solid #e8e8e8
 }
 .base_list{
-  height: 80rpx;
-  padding: 0 30rpx;
-  background: #fff;
-  border-top: 1px solid #efefef;
+  margin-top: 25rpx;
+  margin-left: 40rpx;
 }
-.list_left{
-  float: left;
+.name_content{
   display: flex;
   flex-direction: row
 }
-.list_right{
-  float: right;
+.name{
+  font-size: 32rpx;
+  color: #323232;
+  font-weight: bold
 }
-.base_list image{
-  width: 40rpx;
-  height: 40rpx;
-  margin-top: 20rpx
+.mt10{
+  margin-top: 8rpx;
+  margin-left: 15rpx;
 }
-.base_list .list_content{
-  font-size: 26rpx;
-  line-height: 80rpx;
-  margin-left: 40rpx;
+.mr20{
+  margin-right: 50rpx;
+  line-height: 120rpx;
 }
-.list_tip{
-  color: #efefef;
-  font-weight: bold;
-  line-height: 80rpx;
+.common{
+  font-size: 22rpx;
+  color: #adadad;
 }
-.pdt40{
-  padding-top: 40rpx;
+.left{
+  float: left;
 }
-.content_image{
-  width: 100rpx;
-  height: 100rpx;
-  margin: 0 auto;
-  padding-top: 60rpx;
-}
-.content_image image{
-  width: 100%;
-  height: 100%;
-}
-.content_text{
-  font-size: 28rpx;
-  color: #e0e0e0;
-  text-align: center;
-  display: flex;
-  justify-content:center;
+.right{
+  float: right
 }

@@ -1,40 +1,70 @@
 <!--pages/seeCard.wxml-->
 <view class='view_container'>
   <block wx:if='{{matchCount>0}}'>
-    <block wx:for="{{resultData}}" wx:for-item="item">
-      <view class='base_info'>
+    <view class='container_content'>
+      <block wx:for="{{resultData}}" wx:for-item="item">
         <block wx:if='{{classify=="viewid"}}'>
-          <view class='base_list' id='{{item.viewedid}}' bindtap='seecard'>
-            <view class='list_left'>
-              <block wx:if='{{item.userInfo.realname == null}}'>
-                <text class='list_content'>{{item.userInfo.nickname}}</text>
-              </block>
-              <block wx:else>
-                <text class='list_content'>{{item.userInfo.realname}}</text>
-              </block>
+          <view class='base_info' id='{{item.viewedid}}' bindtap='seecard'>
+            <block wx:if='{{item.userInfo.headimg == null}}'>
+              <image src='../../images/my.png' class='left'></image>
+            </block>
+            <block wx:else>
+              <image src='{{item.userInfo.headimg}}' class='left'></image>
+            </block>
+            <view class='left base_list'>
+              <view class='list_left left'>
+                <view class='name_content'>
+                  <block wx:if='{{item.userInfo.realname == null || item.userInfo.realname == ""}}'>
+                    <text class='name'>{{item.userInfo.nickname}}</text>
+                  </block>
+                  <block wx:else>
+                    <text class='name'>{{item.userInfo.realname}}</text>
+                  </block>
+                    <text class='common mt10'>{{item.userInfo.department}}-{{item.userInfo.job}}</text>
+                </view>
+                 <block wx:if='{{item.userInfo.companyname == null}}'>
+                  <view class='common'>未知</view>
+                 </block>
+                 <block wx:else>
+                  <view class='common'>{{item.userInfo.companyname}}</view>
+                 </block>
+                
+              </view>
             </view>
-            <view class='list_right'>
-              <text class='list_tip'>></text>
+            <view class='right common mr20'>
+                {{item.createtime}}
             </view>
           </view>
         </block>
         <block wx:else>
-          <view class='base_list' id='{{item.viewid}}' bindtap='seecard'>
-            <view class='list_left'>
-              <block wx:if='{{item.userInfo.realname == null}}'>
-                <text class='list_content'>{{item.userInfo.nickname}}</text>
-              </block>
-              <block wx:else>
-                <text class='list_content'>{{item.userInfo.realname}}</text>
-              </block>
+          <view class='base_info' id='{{item.viewid}}' bindtap='seecard'>
+            <image src='{{item.userInfo.headimg}}' class='left'></image>
+            <view class='left base_list'>
+              <view class='list_left left'>
+                <view class='name_content'>
+                  <block wx:if='{{item.userInfo.realname == null || item.userInfo.realname == ""}}'>
+                    <text class='name'>{{item.userInfo.nickname}}</text>
+                  </block>
+                  <block wx:else>
+                    <text class='name'>{{item.userInfo.realname}}</text>
+                  </block>
+                    <text class='common mt10'>{{item.userInfo.department}}-{{item.userInfo.job}}</text>
+                </view>
+                 <block wx:if='{{item.userInfo.companyname == null}}'>
+                  <view class='common'>未知</view>
+                 </block>
+                 <block wx:else>
+                  <view class='common'>{{item.userInfo.companyname}}</view>
+                 </block>
+              </view>
             </view>
-            <view class='list_right'>
-              <text class='list_tip'>></text>
-            </view>
+            <view class='right common mr20'>
+                {{item.createtime}}
+              </view>
           </view>
         </block>
-      </view>
-    </block>
+      </block>
+    </view>
   </block>
   <block wx:else>
     <view class='content_image'>

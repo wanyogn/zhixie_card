@@ -97,5 +97,63 @@ Page({
   //扫二维码
   scanCode:function(){
 
+  },
+  save_code:function(){
+    let that = this;
+    wx.getSetting({
+      success: (res) => {
+        // res.authSetting['scope.writePhotosAlbum'] == undefined    表示 初始化进入该页面
+        // res.authSetting['scope.writePhotosAlbum'] == false    表示 非初始化进入该页面,且未授权
+        // res.authSetting['scope.writePhotosAlbum'] == true    表示 已经位置授权
+        if (res.authSetting['scope.writePhotosAlbum'] == undefined) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              that.save_way();
+            },
+            fail(){
+              wx.showToast({
+                title: '拒绝授权',
+                icon: 'none',
+                duration: 1000
+              })
+            }
+          })
+        } else if (res.authSetting['scope.writePhotosAlbum'] == false){
+          wx.openSetting({
+            success: function (res) {
+              if (res.authSetting["scope.writePhotosAlbum"] == true) {
+                that.save_way();
+              } else {
+                wx.showToast({
+                  title: '授权失败',
+                  icon: 'none',
+                  duration: 1000
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.writePhotosAlbum'] == true){
+          that.save_way();
+        }
+      }
+    })
+  },
+  save_way:function(){
+    wx.canvasToTempFilePath({
+      canvasId: 'mycanvas',
+      success: function (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(resu) {
+            wx.showToast({
+              title: '保存成功至"'+res.tempFilePath,
+              icon: 'success',
+              duration: 1000
+            })
+          }
+        })
+      }
+    })
   }
 })

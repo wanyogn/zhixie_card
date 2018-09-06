@@ -22,6 +22,7 @@ Page({
     pagenumber: 10,//每页10条
     hastotal: 0,//已经看了多少条
     companyName: '',//选择的企业
+    productNum:0
   },
 
   /**
@@ -117,12 +118,14 @@ Page({
   choose: function (e) {
     var index = e.currentTarget.dataset.index;
     var companyName = '';
+    var productNum = 0;
     let data = this.data.searchDatas;
     for (let i = 0; i < data.length; i++) {
       if (i == index) {
         data[index].selectedFlag = !data[index].selectedFlag;
         if (data[index].selectedFlag) {
           companyName = data[index].company_name;
+          productNum = data[index].product_count;
         } else {
           companyName = "";
         }
@@ -132,7 +135,8 @@ Page({
     }
     this.setData({
       searchDatas: this.data.searchDatas,
-      companyName: companyName
+      companyName: companyName,
+      productNum:productNum
     })
   },
   addInfo: function () {
@@ -145,9 +149,25 @@ Page({
         duration: 2000
       })
     } else {
-      wx.navigateTo({
+      /*wx.navigateTo({
         url: '../business/business?keyword=' + this.data.companyName,
-      })
+      })*/
+      let productNum = this.data.productNum;
+      if(productNum == 0){
+        wx.showModal({
+          title: '友情提醒',
+          content: '您选择的公司没有相关产品，请选择其他公司！',
+          success: function (res) {
+            if (res.confirm) {
+            } else if (res.cancel) {
+            }
+          }
+        })
+      }else{
+        wx.navigateTo({
+          url: '../business/business?keyword=' + this.data.companyName,
+        })
+      }
     }
   },
   /*选择其他公司 */

@@ -9,7 +9,7 @@ Page({
   data: {
     resultData:{},
     classify:'',
-    matchCount:0
+    matchCount:1
   },
 
   /**
@@ -18,9 +18,23 @@ Page({
   onLoad: function (options) {
     let classify = options.classify;
     let opertype = options.opertype;
+    if(classify == "viewid"){
+      wx.setNavigationBarTitle({
+        title: '我看过的名片'
+      })
+    }else if(classify == "viewedid"){
+      wx.setNavigationBarTitle({
+        title: '谁看过我'
+      })
+    }
     let that = this;
     util.sendAjax('https://www.yixiecha.cn/wx_card/queryViewCardById.php', { userid: app.globalData.userid, classifytype:classify,opertype:opertype},function(res){
-      console.log(res.length);
+      console.log(res);
+      for(let index=0;index<res.length;index++){
+        res[index].userInfo.department = util.getDepartmentById(res[index].userInfo.department);
+        res[index].userInfo.job = util.getJobById(res[index].userInfo.job);
+        res[index].createtime = util.timeago(res[index].createtime);
+      }
       that.setData({
         resultData:res,
         matchCount:res.length,
@@ -39,9 +53,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.setNavigationBarTitle({
-      title: '名片'
-    })
   },
   seecard:function(e){
     let userid = e.currentTarget.id;

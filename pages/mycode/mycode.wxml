@@ -3,5 +3,5 @@
   <canvas canvas-id='mycanvas' style='width:100%;height:100%' bindlongtap='scanCode'></canvas>
 </view>
 <view class='btn_div'>
-  <button class='save_phone' open-type='share'>发送给好友</button>
+  <button class='save_phone' bindtap='save_code'>保存二维码至本地</button>
 </view>

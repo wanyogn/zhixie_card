@@ -18,7 +18,8 @@ Page({
     searchData:[],
     productCount:0,
     searchArea:[],
-    areaCount:0
+    areaCount:0,
+    info_click:true
   },
 
   /**
@@ -84,7 +85,7 @@ Page({
       })
       
     } else {//打开转发的页面
-      let userid = options.userid;
+      let userid = 176;
       handlerLogin.login(function (result) {
         handlerLogin.getUserInfo(function (res) {
           var pc = new WXBizDataCrypt(app.globalData.appId, result.data.session_key);
@@ -111,7 +112,6 @@ Page({
           
         })
       })
-      
     }
     
   },
@@ -225,7 +225,7 @@ Page({
     })
   },
   /*查看地址 */
-  seeAddress:function(){
+  openAddress:function(){
     var data = this.data.resultData; 
     var that = this;
     var demo = new QQMapWX({
@@ -239,7 +239,12 @@ Page({
         if(res.status == 0){
           let latitude = res.result.location.lat;
           let longitude = res.result.location.lng;
-          that.openMap(latitude,longitude);
+          //that.openMap(latitude,longitude);
+          wx.openLocation({
+            latitude: latitude,
+            longitude: longitude,
+            scale: 28
+          })
         }
       },
       fail: function (res) {
@@ -249,8 +254,8 @@ Page({
     /**/
   },
   openMap:function(a,b){
-    var that = this;
-    wx.getSetting({
+    //var that = this;
+    /*wx.getSetting({
       success: (res) => {
         console.log(res);
         if (res.authSetting['scope.userLocation']) {
@@ -270,6 +275,57 @@ Page({
 
             }
           })
+        }
+      }
+    })*/
+    wx.openLocation({
+      latitude: a,
+      longitude: b,
+      scale: 28
+    })
+  },
+  seeAddress: function () {
+    let that = this;
+    wx.getSetting({
+      success: (res) => {
+        // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
+        // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
+        // res.authSetting['scope.userLocation'] == true    表示 已经位置授权
+        if (res.authSetting['scope.userLocation'] == undefined) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success() {
+              that.openAddress();
+            },
+            fail() {
+              wx.showToast({
+                title: '拒绝授权',
+                icon: 'none',
+                duration: 1000
+              })
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == false) {
+          wx.openSetting({
+            success: function (res) {
+              if (res.authSetting["scope.userLocation"] == true) {
+                /*wx.showToast({
+                  title: '授权成功',
+                  icon: 'success',
+                  duration: 1000
+                })*/
+                that.openAddress();
+              } else {
+                wx.showToast({
+                  title: '授权失败',
+                  icon: 'none',
+                  duration: 1000
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == true) {
+          that.openAddress();
         }
       }
     })
@@ -358,6 +414,7 @@ Page({
         } else {
           data[index].picture_addr = "../../images/product.png";
         }
+        if (index % 2 == 0) { data[index].odd = "card_right"; } else { data[index].odd = "card_left";}
       }
       that.setData({
         searchData:data,
@@ -385,6 +442,11 @@ Page({
   seeMore:function(){
     wx.navigateTo({
       url: '../productList/product_list?userid=' + this.data.currentId,
+    })
+  },
+  click_info:function(){
+    this.setData({
+      info_click: !this.data.info_click
     })
   }
 })

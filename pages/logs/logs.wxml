@@ -1,6 +1,159 @@
-<!--logs.wxml-->
-<view class="container log-list">
-  <block wx:for="{{logs}}" wx:for-item="log">
-    <text class="log-item">{{index + 1}}. {{log}}</text>
-  </block>
+<view class='view_container'>
+  <view class='card'>
+    <view class='card_left'>
+      <block wx:if='{{resultData.realname == null}}'>
+        <view class='card_name'>{{resultData.nickname}}</view>
+      </block>
+      <block wx:else>
+        <view class='card_name'>{{resultData.realname}}</view>
+      </block>
+      <view class='card_phone'>{{resultData.mobilephone}}</view>
+      <view class='card_job'>
+        <text class='card_job'>{{resultData.department}}</text> |
+        <text class='card_job'>{{resultData.job}}</text>
+      </view>
+      <view class='card_company'>{{resultData.companyname}}</view>
+    </view>
+    <view class='card_right'>
+      <view class='card_img'>
+        <block wx:if='{{resultData.headimg == null || resultData.headimg == ""}}'>
+          <image src='../../images/my.png'></image>
+        </block>
+        <block wx:else>
+          <image src='{{resultData.headimg}}'></image>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class='info_statistics'>
+    <view class='statistics_content' data-num='{{dzNum}}' bindtap='bindDZ'>
+      <view class='content_main'>
+        <image src='../../images/zan.png' class='content_image'></image>
+        <view>点赞<text class='dz_num'>{{dzNum}}</text></view>
+      </view>
+      
+    </view>
+    <view class='statistics_content'>
+      <view class='content_main'>
+        <image src='../../images/cha.png' class='content_image'></image>
+        <view>查看<text>{{resultData.viewed}}</text></view>
+      </view>
+    </view>
+    <view class='statistics_content special_content'>
+      <view class='content_main'>
+       <button open-type='share'> <image src='../../images/zhuan.png' style='margin-left:-30rpx' class='zhuan_image'></image></button>
+        <view>转发<text>{{resultData.forward}}</text></view>
+      </view>
+    </view>
+  </view>
+  <view class='contact_view'>
+    <button class='phone_call' bindtap='phoneContact'>拨打电话咨询</button>
+    <button class='wechat_call' open-type='contact'>在线咨询</button>
+    <view style='clear:both'></view>
+  </view>
+  <view class='base_info'>
+    <!--微信-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/wechat.png'></image>
+        <text class='list_content' bindtap='copywx'>{{resultData.wechatnum}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view> 
+    <!--手机号-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/phone.png'></image>
+        <text class='list_content' bindtap='phoneContact'>{{resultData.mobilephone}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view>
+    <!--邮箱-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/mail.png'></image>
+        <text class='list_content'>{{resultData.email}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view>
+    <!--公司名称-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/company.png'></image>
+        <text class='list_content'>{{resultData.companyname}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view>  
+    <!--公司地址-->
+    <view class='base_list'>
+      <view class='list_left'>
+        <image src='../../images/address.png'></image>
+        <text class='list_content' bindtap='seeAddress'>{{resultData.companyaddress}}</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view> 
+  </view>
+  <button class='save_phone' bindtap='savePhone'>保存到通讯录</button>
+  <view class='base_info'>
+    <view class='base_title'>我的业务</view>
+    <view class='service_title'>
+      <text class='base_title left'>我负责的产品</text>
+      <block wx:if='{{productCount > 2}}'>
+        <text class='right' bindtap='seeMore'>全部产品</text>
+      </block>
+      <block wx:else>
+      </block>  
+      <text class='clear'></text>
+    </view>
+    <view class='base_main'>
+      <block wx:if='{{productCount > 0}}'>
+        <block wx:for="{{searchData}}" wx:for-item="item">
+          <view class='item'>
+            <view class='item_main'>
+              <view class='item_main_left'>
+                <image class='item_main_left_img' src='{{item.picture_addr}}'/>
+              </view>
+              <view class='item_main_right'>
+                <view class='title_content'>
+                  <text class='title' data-id="{{item.id}}">{{item.product_name_ch}}</text>
+                  <text class='{{item.product_state == "有效"?"y_status":"w_status"}}'>{{item.product_state}}</text>
+                </view>
+                <text class='cdgs'>产地归属：{{item.src_loc}}</text>
+                <text class='gllb'>管理类别：{{item.main_class}}</text>
+                <text class='flml'>型号规格：{{item.product_mode}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:else>
+        <view class='none_info'>您还没有添加负责的产品</view>
+      </block>
+    </view>
+  </view>
+  <view class='service_title'>
+    <text class='base_title left'>我负责的区域</text>
+    <text class='right'></text>
+    <text class='clear'></text>
+  </view>
+  <view class='base_main'>
+    <block wx:if='{{areaCount > 0}}'>
+        <block wx:for="{{searchArea}}" wx:for-item="item">
+          <view class='area'>{{item.name}}</view>
+        </block>
+    </block>
+    <block wx:else>
+      <view class='none_info'>您还没有添加负责的区域</view>
+    </block>
+  </view>
 </view>

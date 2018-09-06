@@ -26,32 +26,35 @@
     </view>
   </view>
   <view class='info_statistics'>
-    <view class='statistics_content' data-num='{{dzNum}}' bindtap='bindDZ'>
-      <view class='content_main'>
-        <image src='../../images/zan.png' class='content_image'></image>
-        <view>点赞<text class='dz_num'>{{dzNum}}</text></view>
+    <view class='info_content'>
+      <view class='statistics_content' data-num='{{dzNum}}' bindtap='bindDZ'>
+        <view class='content_main'>
+          <image src='../../images/new/zan.png' class='content_image'></image>
+          <view class='title'>点赞<text class='dz_num'>{{dzNum}}</text></view>
+        </view>
       </view>
-      
-    </view>
-    <view class='statistics_content'>
-      <view class='content_main'>
-        <image src='../../images/cha.png' class='content_image'></image>
-        <view>查看<text>{{resultData.viewed}}</text></view>
+      <view class='statistics_content'>
+        <view class='content_main'>
+          <image src='../../images/new/cha.png' class='content_image'></image>
+          <view class='title'>查看<text>{{resultData.viewed}}</text></view>
+        </view>
       </view>
-    </view>
-    <view class='statistics_content special_content'>
-      <view class='content_main'>
-       <button open-type='share'> <image src='../../images/zhuan.png' style='margin-left:-30rpx' class='zhuan_image'></image></button>
-        <view>转发<text>{{resultData.forward}}</text></view>
+      <view class='statistics_content special_content'>
+        <view class='content_main'>
+        <button open-type='share'> <image src='../../images/new/zhuan.png' style='margin-left:-30rpx' class='zhuan_image'></image></button>
+          <view class='title'>转发<text>{{resultData.forward}}</text></view>
+        </view>
       </view>
     </view>
   </view>
-  <view class='contact_view'>
-    <button class='phone_call' bindtap='phoneContact'>拨打电话咨询</button>
-    <button class='wechat_call' open-type='contact'>在线咨询</button>
-    <view style='clear:both'></view>
-  </view>
-  <view class='base_info'>
+  <block wx:if='{{info_click==true}}'>
+    <view class='open_close' bindtap='click_info'>展开全部信息↓</view>
+  </block>
+  <block wx:else>
+    <view class='open_close' bindtap='click_info'>收起全部信息↑</view>
+  </block>
+  
+  <view class='base_info' hidden='{{info_click}}'>
     <!--微信-->
     <view class='base_list'>
       <view class='list_left'>
@@ -59,7 +62,7 @@
         <text class='list_content' bindtap='copywx'>{{resultData.wechatnum}}</text>
       </view>
       <view class='list_right'>
-        <text class='list_tip'>></text>
+        <view class='view_btn'>复制</view>
       </view>
     </view> 
     <!--手机号-->
@@ -69,7 +72,7 @@
         <text class='list_content' bindtap='phoneContact'>{{resultData.mobilephone}}</text>
       </view>
       <view class='list_right'>
-        <text class='list_tip'>></text>
+        <view class='view_btn'>拨打</view>
       </view>
     </view>
     <!--邮箱-->
@@ -104,33 +107,27 @@
     </view> 
   </view>
   <button class='save_phone' bindtap='savePhone'>保存到通讯录</button>
-  <view class='base_info'>
-    <view class='base_title'>我的业务</view>
+  <view class=''>
+    <view class='base_title mt20'>我的业务</view>
     <view class='service_title'>
       <text class='base_title left'>我负责的产品</text>
-      <block wx:if='{{productCount > 2}}'>
+      <block wx:if='{{productCount > 0}}'>
         <text class='right' bindtap='seeMore'>全部产品</text>
       </block>
       <block wx:else>
-      </block>  
+      </block>
       <text class='clear'></text>
     </view>
     <view class='base_main'>
       <block wx:if='{{productCount > 0}}'>
         <block wx:for="{{searchData}}" wx:for-item="item">
-          <view class='item'>
-            <view class='item_main'>
-              <view class='item_main_left'>
-                <image class='item_main_left_img' src='{{item.picture_addr}}'/>
-              </view>
-              <view class='item_main_right'>
-                <view class='title_content'>
-                  <text class='title' data-id="{{item.id}}">{{item.product_name_ch}}</text>
-                  <text class='{{item.product_state == "有效"?"y_status":"w_status"}}'>{{item.product_state}}</text>
-                </view>
-                <text class='cdgs'>产地归属：{{item.src_loc}}</text>
-                <text class='gllb'>管理类别：{{item.main_class}}</text>
-                <text class='flml'>型号规格：{{item.product_mode}}</text>
+          <view class='product_main {{item.odd}}'>
+            <view class='product_image'>
+              <image src='{{item.picture_addr}}'></image>
+            </view>
+            <view class='product_info'>
+              <view class='product_title'>
+                <view>{{item.product_name_ch}}</view>
               </view>
             </view>
           </view>
@@ -139,21 +136,20 @@
       <block wx:else>
         <view class='none_info'>您还没有添加负责的产品</view>
       </block>
+      <view style='clear:both'></view>
     </view>
-  </view>
-  <view class='service_title'>
-    <text class='base_title left'>我负责的区域</text>
-    <text class='right'></text>
-    <text class='clear'></text>
-  </view>
-  <view class='base_main'>
-    <block wx:if='{{areaCount > 0}}'>
+    <view class='service_title'>
+      <text class='base_title left'>我负责的区域</text>
+    </view>
+    <view class='base_main'>
+      <block wx:if='{{areaCount > 0}}'>
         <block wx:for="{{searchArea}}" wx:for-item="item">
           <view class='area'>{{item.name}}</view>
         </block>
-    </block>
-    <block wx:else>
-      <view class='none_info'>您还没有添加负责的区域</view>
-    </block>
+      </block>
+      <block wx:else>
+        <view class='none_info'>您还没有添加负责的区域</view>
+      </block>
+    </view>
   </view>
 </view>
