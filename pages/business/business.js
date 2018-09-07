@@ -25,6 +25,9 @@ Page({
     util.sendAjax('https://www.yixiecha.cn/wxsmallprogram/wx_company_detail.php',data,function(res){
       console.log(res);
     })*/
+    wx.setNavigationBarTitle({
+      title: '负责的产品'
+    })
     let that = this;
     wx.getSystemInfo({
       success: function(res) {

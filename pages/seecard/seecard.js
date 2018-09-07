@@ -16,6 +16,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     let classify = options.classify;
     let opertype = options.opertype;
     if(classify == "viewid"){
@@ -29,7 +33,6 @@ Page({
     }
     let that = this;
     util.sendAjax('https://www.yixiecha.cn/wx_card/queryViewCardById.php', { userid: app.globalData.userid, classifytype:classify,opertype:opertype},function(res){
-      console.log(res);
       for(let index=0;index<res.length;index++){
         res[index].userInfo.department = util.getDepartmentById(res[index].userInfo.department);
         res[index].userInfo.job = util.getJobById(res[index].userInfo.job);
@@ -40,6 +43,7 @@ Page({
         matchCount:res.length,
         classify:classify
       })
+      wx.hideLoading();
     })
   },
 

@@ -6,11 +6,11 @@
     </view>-->
     <view class='main_left'>
       <text class='key'>{{keyword}}</text>
-      <view class='product'>共有<text class='num'>{{matchCount}}</text>个有效注册产品</view>
-      <text>请选择与您业务有关的产品</text>
+      <view class='product'>共有<text class='num'>{{matchCount}}</text>个有效注册产品,请选择与您业务有关的产品</view>
+      <text></text>
     </view>
     <view class='main_right'>
-      <text class='chooseAll'>勾选全部</text>
+      <!--<text class='chooseAll'>勾选全部</text>-->
     </view>
     <view class='clear'></view>
   </view>
@@ -26,7 +26,7 @@
               <view class='item_main_right'>
                 <view class='title_content'>
                   <text class='title' data-id="{{item.id}}">{{item.product_name_ch}}</text>
-                  <switch class='y_status' bindchange="switchChange" color='#f39800' id='{{item.id}}'/>
+                  <switch class='y_status' bindchange="switchChange" color='#26c1ea' id='{{item.id}}'/>
                 </view>
                 <text class='cdgs'>产地归属：{{item.src_loc}}</text>
                 <text class='gllb'>管理类别：{{item.main_class}}</text>

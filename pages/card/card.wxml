@@ -58,27 +58,27 @@
     <!--微信-->
     <view class='base_list'>
       <view class='list_left'>
-        <image src='../../images/wechat.png'></image>
+        <image src='../../images/new/wechat.jpg'></image>
         <text class='list_content' bindtap='copywx'>{{resultData.wechatnum}}</text>
       </view>
       <view class='list_right'>
-        <view class='view_btn'>复制</view>
+        <view class='view_btn' bindtap='copywx'>复制</view>
       </view>
     </view> 
     <!--手机号-->
     <view class='base_list'>
       <view class='list_left'>
-        <image src='../../images/phone.png'></image>
+        <image src='../../images/new/phone.png'></image>
         <text class='list_content' bindtap='phoneContact'>{{resultData.mobilephone}}</text>
       </view>
       <view class='list_right'>
-        <view class='view_btn'>拨打</view>
+        <view class='view_btn' bindtap='phoneContact'>拨打</view>
       </view>
     </view>
     <!--邮箱-->
     <view class='base_list'>
       <view class='list_left'>
-        <image src='../../images/mail.png'></image>
+        <image src='../../images/new/mail.png'></image>
         <text class='list_content'>{{resultData.email}}</text>
       </view>
       <view class='list_right'>
@@ -88,7 +88,7 @@
     <!--公司名称-->
     <view class='base_list'>
       <view class='list_left'>
-        <image src='../../images/company.png'></image>
+        <image src='../../images/new/company.jpg'></image>
         <text class='list_content'>{{resultData.companyname}}</text>
       </view>
       <view class='list_right'>
@@ -98,11 +98,11 @@
     <!--公司地址-->
     <view class='base_list'>
       <view class='list_left'>
-        <image src='../../images/address.png'></image>
+        <image src='../../images/new/address.png'></image>
         <text class='list_content' bindtap='seeAddress'>{{resultData.companyaddress}}</text>
       </view>
       <view class='list_right'>
-        <text class='list_tip'>></text>
+        <view class='view_btn' bindtap='seeAddress'>地图</view>
       </view>
     </view> 
   </view>
@@ -129,6 +129,7 @@
               <view class='product_title'>
                 <view>{{item.product_name_ch}}</view>
               </view>
+
             </view>
           </view>
         </block>
@@ -143,9 +144,22 @@
     </view>
     <view class='base_main'>
       <block wx:if='{{areaCount > 0}}'>
-        <block wx:for="{{searchArea}}" wx:for-item="item">
+        <!--<block wx:for="{{searchArea}}" wx:for-item="item">
           <view class='area'>{{item.name}}</view>
+        </block>-->
+        <block wx:for="{{areaData}}" wx:for-item="item">
+          <view class='container_content'>
+            <view class='container_left'>
+              <view class='s_title full'>{{item.title.name}}</view>
+            </view>
+            <view class='container_right'>
+              <block wx:for="{{item.content}}" wx:for-item="idx">
+                <view class="area {{idx.selected==true?'active':''}}" data-current='{{idx.id}}' bindtap='bindCli' >{{idx.name}}</view>
+              </block>
+            </view>    
+          </view>
         </block>
+        <view class='tip'>注：蓝色代表您负责的区域</view>
       </block>
       <block wx:else>
         <view class='none_info'>您还没有添加负责的区域</view>

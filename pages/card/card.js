@@ -19,7 +19,8 @@ Page({
     productCount:0,
     searchArea:[],
     areaCount:0,
-    info_click:true
+    info_click:false,
+    areaData:[]
   },
 
   /**
@@ -84,34 +85,45 @@ Page({
         })
       })
       
-    } else {//打开转发的页面
-      let userid = 176;
-      handlerLogin.login(function (result) {
-        handlerLogin.getUserInfo(function (res) {
-          var pc = new WXBizDataCrypt(app.globalData.appId, result.data.session_key);
-          var data = pc.decryptData(res.encryptedData, res.iv);
-          util.sendAjax('https://www.yixiecha.cn/wx_card/queryUserByUnionId.php', { unionid: data.unionId }, function (resu) {//已授权
-            if (resu == 'fail') {
-              console.log(resu);
-            } else {
+    } else {//打开转发的页面,或者是小程序内打开
+      let userid = options.userid;
+      let classify = options.type;
+      if (classify == 'forward'){
+        handlerLogin.login(function (result) {
+          handlerLogin.getUserInfo(function (res) {
+            var pc = new WXBizDataCrypt(app.globalData.appId, result.data.session_key);
+            var data = pc.decryptData(res.encryptedData, res.iv);
+            util.sendAjax('https://www.yixiecha.cn/wx_card/queryUserByUnionId.php', { unionid: data.unionId }, function (resu) {//已授权
+              if (resu == 'fail') {
+                console.log(resu);
+              } else {
+                that.setData({
+                  currentId: resu.id,
+                  userid: userid
+                })
+                that.contentFill(userid);
+                wx.hideLoading();
+              }
+            }, function (res) {//未授权
               that.setData({
-                currentId: resu.id,
                 userid: userid
               })
               that.contentFill(userid);
               wx.hideLoading();
-            }
-          },function(res){//未授权
-            that.setData({
-              userid: userid
+              wx.setStorageSync("userid", userid);//将userID放入缓存
             })
-            that.contentFill(userid);
-            wx.hideLoading();
-            wx.setStorageSync("userid", userid);//将userID放入缓存
+
           })
-          
         })
-      })
+      }else{
+        that.setData({
+          currentId: app.globalData.userid,
+          userid: userid
+        })
+        that.contentFill(userid);
+        wx.hideLoading();
+      }
+      
     }
     
   },
@@ -188,7 +200,7 @@ Page({
     }
     return {
       title: '智械名片',
-      path: '/pages/card/card?userid='+data.id,
+      path: '/pages/card/card?type=forward&userid='+data.id,
       success: function (resu) {
         // 转发成功
 
@@ -414,7 +426,7 @@ Page({
         } else {
           data[index].picture_addr = "../../images/product.png";
         }
-        if (index % 2 == 0) { data[index].odd = "card_right"; } else { data[index].odd = "card_left";}
+        if (index % 2 == 0) { data[index].odd = "card_left"; } else { data[index].odd = "card_right";}
       }
       that.setData({
         searchData:data,
@@ -432,11 +444,38 @@ Page({
     } else {
       userid = watchUserId;
     }
-    util.sendAjax('https://www.yixiecha.cn/wx_card/selectAreaById.php', { userid: userid}, function (data) {
+    /*util.sendAjax('https://www.yixiecha.cn/wx_card/selectAreaById.php', { userid: userid}, function (data) {
       that.setData({
         searchArea:data,
         areaCount:data.length
       })
+    })*/
+    util.sendAjax('https://www.yixiecha.cn/wx_card/selectAreas.php', {}, function (res) {
+      util.sendAjax('https://www.yixiecha.cn/wx_card/selectAreaById.php', { userid: userid }, function (data) {
+        /*for (let i = 0; i < res.length; i++) {
+          for (let j = 0; j < res[i].content.length; j++) {
+            res[i].content[j].selected = false;
+          }
+        }
+        that.setData({
+          areaData: res
+        })*/
+        for (let i = 0; i < res.length; i++) {
+          for (let j = 0; j < res[i].content.length; j++) {
+            //res[i].content[j].selected = false;
+            for(let a = 0;a < data.length;a++){
+              if (res[i].content[j].id == data[a].id){
+                res[i].content[j].selected = true;
+              }
+            }
+          }
+        }
+        that.setData({
+          areaData: res,
+          areaCount: data.length
+        })
+      })
+      
     })
   },
   seeMore:function(){

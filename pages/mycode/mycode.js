@@ -13,6 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '我的二维码'
+    })
     let userid = options.id;
     this.setData({
       userid:userid

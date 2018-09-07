@@ -11,6 +11,9 @@ Page({
     searchData:[],
   },
   onLoad:function(){
+    wx.setNavigationBarTitle({
+      title: '负责的区域'
+    })
     let that = this;
     /*wx.getSystemInfo({
       success: function (res) {
@@ -54,6 +57,32 @@ Page({
       chooseRes:chooseRes,
       searchData:searchData
     })
+  },
+  /*全选功能 */
+  switch1Change:function(e){
+    let flag = e.detail.value;
+    let chooseRes = this.data.chooseRes;
+    let searchData = this.data.searchData;
+    chooseRes.splice(0,chooseRes.length);//清空数组
+    if(flag){//全选
+      for (let i = 0; i < searchData.length; i++) {
+        for (let j = 0; j < searchData[i].content.length; j++) {
+          searchData[i].content[j].selected = true;
+          chooseRes.push(searchData[i].content[j].id);
+        }
+      }
+    }else{//反选
+      for (let i = 0; i < searchData.length; i++) {
+        for (let j = 0; j < searchData[i].content.length; j++) {
+          searchData[i].content[j].selected = false;
+        }
+      }
+    }
+    this.setData({
+      chooseRes: chooseRes,
+      searchData: searchData
+    })
+    //console.log('switch1 发生 change 事件，携带值为', e.detail.value)
   },
   save:function(){
     let userid = app.globalData.userid;

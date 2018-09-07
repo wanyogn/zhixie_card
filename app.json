@@ -12,8 +12,9 @@
     "pages/companySel/companySel",
     "pages/business/business",
     "pages/productList/product_list",
-    "pages/currentCompany/currentCompany",
-    "pages/areaSel/areaSel"
+"pages/areaSel/areaSel",
+    "pages/currentCompany/currentCompany"
+    
 
   ],
   "window": {
@@ -24,20 +25,26 @@
   },
   "tabBar": {
     "color": "grey",
-    "selectedColor": "#43c531",
+    "selectedColor": "#26c1ea",
     "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_press.png"
+        "text": "医械查",
+        "iconPath": "images/new/1.jpg",
+        "selectedIconPath": "images/new/1_press.jpg"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "器械助手",
+        "iconPath": "images/new/2.jpg",
+        "selectedIconPath": "images/new/2_press.jpg"
       },
       {
         "pagePath": "pages/my/my",
         "text": "我的",
-        "iconPath": "images/my.png",
-        "selectedIconPath": "images/my_press.png"
+        "iconPath": "images/new/3.jpg",
+        "selectedIconPath": "images/new/3_press.jpg"
       }
     ]
   }

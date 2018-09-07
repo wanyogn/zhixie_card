@@ -1,17 +1,32 @@
+<view class='header'>
+  <view class='input'>
+    <view class='company_title'>选择您所负责的区域：</view>
+    <view class='quan'>全选:
+      <switch bindchange="switch1Change" color='#26c1ea'/>
+    </view>
+    <view style='clear:both'></view>
+  </view>
+</view>
 <view class='container_main'>
+  
   <block wx:for="{{searchData}}" wx:for-item="item">
-    <view class='container_content mt'>
+    <view class='container_content'>
       <view class='container_left'>
-        <view class="swiper-tab-item" data-current="{{item.title.id}}" bindtap="swichNav">{{item.title.name}}</view>
+        <view class='s_title full' data-current="{{item.title.id}}" bindtap="swichNav">{{item.title.name}}</view>
       </view>
       <view class='container_right'>
-        <view class="swiper-container">
-          <block wx:for="{{item.content}}" wx:for-item="idx">
-            <view class="province {{idx.selected==true?'active':''}}" data-current='{{idx.id}}' bindtap='bindCli' >{{idx.name}}</view>
-          </block>
-        </view>
-      </view>
+        <block wx:for="{{item.content}}" wx:for-item="idx">
+          <view class="area {{idx.selected==true?'active':''}}" data-current='{{idx.id}}' bindtap='bindCli' >{{idx.name}}</view>
+        </block>
+      </view>    
     </view>
   </block>
+  <!--<view class='container_content'>
+      <view class='container_left'>
+         <view class='s_title quan'>全选:
+          <switch bindchange="switch1Change" color='#26c1ea'/>
+        </view>
+      </view>
+    </view>-->
   <button class='save' bindtap='save'>保存</button>
 </view>

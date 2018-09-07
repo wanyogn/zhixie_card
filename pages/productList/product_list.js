@@ -14,6 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '负责的全部产品'
+    })
     let userid = options.userid;   
     this.fetchProduct(userid);
   },

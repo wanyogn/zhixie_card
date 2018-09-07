@@ -23,7 +23,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '编辑我的信息'
+    })
     let id = options.id;
+    //let id = 176;
     this.contentFill(id);
     this.setData({
       id: id

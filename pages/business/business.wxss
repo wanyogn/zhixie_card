@@ -130,8 +130,8 @@ color: #f39800
 }
 .saveInfo{
   width: 48%;
-  background: #f39800;
-  border: #f39800;
+  background: #26c1ea;
+  border: #26c1ea;
   color: #fff;
   font-size: 30rpx;
 }
@@ -142,4 +142,8 @@ color: #f39800
 }
 .num,.key{
   color: #f39800
+}
+.key{
+  font-size: 30rpx;
+  color: #898989
 }
