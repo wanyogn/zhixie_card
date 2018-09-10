@@ -1,1 +1,15 @@
-<view>器械助手</view>
+<view>
+  <text class='shareText'>生成海报分享至</text>
+  <view class='imgBox'>
+    <button open-type="share" class='zfbtn'>微信好友</button>
+    <button class='zfbtn m_l' bindtap='formSubmit'>名片海报</button>
+  </view>
+  <view class='imagePathBox' hidden="{{maskHidden == false}}">
+    <image src="{{imagePath}}" class='shengcheng'></image>
+    <button class='baocun' bindtap='baocun'>保存相册，分享到朋友圈</button>
+  </view>
+  <view hidden="{{maskHidden == false}}" class="mask"></view> 
+  <view class="canvas-box">
+      <canvas  style="width: 375px;height: 667px;position:fixed;top:9999px" canvas-id="mycanvas"/>
+  </view>  
+</view>

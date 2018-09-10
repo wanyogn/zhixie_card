@@ -1,268 +1,70 @@
-/* pages/card/card.wxss */
-.view_container{
-  background: #fff;
-  margin: 30rpx 30rpx 0 30rpx;
+
+.shareText{
+  display: block;
+  text-align: center;
+  color: #333;
+  font-size: 28rpx;
+  margin-top: 100rpx;
 }
-.card{
-  height: 250rpx;
-  padding: 50rpx 40rpx;
-  background: #efefef;
-  border-radius: 20rpx;
-  box-shadow: 1px 1px 3px #888888,-1px -1px 3px #888888;
-  position: relative
+.imgBox{
+  text-align: center;
+  width: 100%;
+  margin-top:60rpx;
+  padding-bottom: 120rpx;
 }
-.card_left{
-  float: left;
-}
-.card_right{
-  float: right
-}
-.card_name{
-  font-size: 44rpx;
-  font-weight: 550;
-  color: #000;
-}
-.card_phone{
-  margin-top: 20rpx;
-  font-size: 26rpx;
-}
-.card_job{
-  margin-top: 10rpx;
-  font-size: 26rpx;
-}
-.card_company{
-  font-size: 26rpx;
-  position: absolute;
-  bottom: 50rpx;
-}
-.card_img{
-  width: 140rpx;
-  height: 140rpx;
-  background: #fff;
-  border-radius: 50%;
-}
-.card_img image{
+.img{
+  display: inline-block;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
 }
-/*点赞，转发，查看统计*/
-.info_statistics{
-  margin-top: 20rpx;
-  width: 100%;
-  height: 150rpx;
-  display: flex;
-  flex-direction: row;
+.m_l{
+  margin-left: 180rpx;
 }
-.statistics_content{
-  width: 33%;
-  border-right: 2px solid #efefef;
-}
-.special_content{
-  width: 33%;
-  border: none !important;
-}
+.zfbtn{
+  display: inline-block;
 
-.content_main{
-  padding-top: 30rpx;
-  display: flex;
-  flex-direction: column;
+  height: 120rpx;
+  border-radius: 50%;
+  background: transparent;
+  outline: none;
+  border: 0;
+  padding: 0;
 }
-.statistics_content .content_image{
-  width: 60rpx;
-  height: 60rpx;
-  margin:auto;
-}
-.special_content button{
-  width: 60rpx;
-  height: 60rpx;
-  background: #fff;
-}
-/*去掉按钮边框*/
-.special_content button::after{
-  border:none;
-}
-.statistics_content .zhuan_image{
-   width: 60rpx;
-  height: 60rpx;
-}
-.statistics_content view{
-  font-size: 20rpx;
-  text-align: center;
-  color: #5a5a5a;
-}
-/*联系我们*/
-.contact_view{
-  margin-top: 20rpx;
+.imagePathBox{
   width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
 }
-.contact_view .phone_call{
-  width: 45%;
-  float: left;
-  background: #3fcf94;
-  border-color: #3fcf94;
-  color: #fff;
-  font-size: 28rpx;
+.shengcheng{
+  width: 80%;
+  height: 80%;
+  position: fixed;
+  top: 50rpx;
+  left: 50%;
+  margin-left: -40%;
+  z-index: 10;
 }
-.contact_view .wechat_call{
-  width: 45%;
-  float: right;
-  background: #fff;
-  border-color: #3fcf94;
-  color: #3fcf94;
-  font-size: 28rpx;
-}
-/*基本信息*/
-.base_info{
-  margin-top: 20rpx;
-}
-.base_list{
-  width: 100%;
+.baocun{
+  display: block;
+  width: 80%;
   height: 80rpx;
-  border-bottom: 2px solid #efefef;
-}
-.list_left{
-  float: left;
-  display: flex;
-  flex-direction: row
-}
-.list_right{
-  float: right;
-}
-.base_list image{
-  width: 40rpx;
-  height: 40rpx;
-  margin-top: 20rpx
-}
-.base_list .list_content{
-  font-size: 26rpx;
+  padding: 0;
   line-height: 80rpx;
-  margin-left: 40rpx;
-}
-.list_tip{
-  color: #efefef;
-  font-weight: bold;
-  line-height: 80rpx;
-}
-.save_phone{
-  margin-top: 30rpx;
-  background: #3fcf94;
-  border: #3fcf94;
-  color: #fff;
-  font-size: 30rpx;
-}
-
-.base_title{
-  font-size: 30rpx;
-  color: red;
   text-align: center;
-  align-items:center;
-}
-.base_main{
-  min-height: 200rpx;
-}
-
-.item{
-  width: 100%;
-  height: 200rpx;
-  background-color: #fff;
-  margin-top: 10rpx;
-
-}
-.item_main{
-  display: flex;
-  flex-direction: row;
-  padding: 30rpx;
-}
-.item_main_left{
-  width:105rpx;
-  height:100rpx;
-}
-.item_main_left_img{
-  width: 100%;
-  height: 100%;
-}
-
-.item_main_right{
-  margin-left: 30rpx;
-  float: right;
-  display: flex;
-  flex-direction: column;
-  width: 78%;
-}
-.title_content{
-  margin-top: 0px;
-  padding-top: 0px;
-  padding-bottom: 10rpx;
-  margin-bottom: 10rpx;
-  border-bottom: 1rpx solid #e6e6e6;
-}
-.title{
-  float: left;
-  font-size: 28rpx;
-  color: #f39800;
-}
-.y_status{
-  float: right;
-  font-size: 28rpx;
-  padding: 2rpx 10rpx;
-  background-color: #f39800;
+  position: fixed;
+  bottom: 50rpx;
+  left: 10%;
+  background: #26c1ea;
   color: #fff;
-  border-radius: 10rpx;
+  font-size: 32rpx;
+  border-radius: 44rpx;
 }
-.w_status{
-  float: right;
-  font-size: 28rpx;
-  padding: 2rpx 10rpx;
-  background-color: #dadada;
-  color: #fff;
-  border-radius: 10rpx;
-}
-.flml{
-  
-  line-height: 25rpx;
-}
-.gllb{
-  line-height: 25rpx;
-}
-.cdgs{
-  line-height: 25rpx;
-}
-.zcgs{
-  line-height: 25rpx;
-  
-}
-.zcgs_content{
-color: #f39800
-}
-.none_info{
-  color: #e6e6e6;
-  line-height: 200rpx;
-  text-align: center;
-}
-.service_title{
-  padding-bottom: 20px;
-}
-.left{
-  float: left;
-}
-.right{
-  float:right;
-}
-.clear{
-  clear: both
-}
-.area{
-  width: 16%;
-  height: 50rpx;
-  text-align: center;
-  line-height: 50rpx;
-  font-size: 24rpx;
-  float: left;
-  margin-right: 0.6%;
-  margin-top: 10rpx;
-  border-radius: 10rpx;
-  color: #ff7d18;
-  background-color: rgba(255, 125, 24, 0.1);
-  border-color: transparent;
+button[class="baocun"]::after{
+  border: 0;
 }

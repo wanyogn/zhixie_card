@@ -49,7 +49,8 @@ page{
 }
 .list_name{
   font-size: 30rpx;
-  color: #888888
+  color: #888888;
+  width: 2em;
 }
 .list_content{
   font-size: 30rpx;

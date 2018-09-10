@@ -1,18 +1,38 @@
 <view class='view_container'>
   <view class='card'>
     <view class='card_left'>
-      <block wx:if='{{resultData.realname == null}}'>
+      <block wx:if='{{resultData.realname == null || resultData.realname == ""}}'>
         <view class='card_name'>{{resultData.nickname}}</view>
       </block>
       <block wx:else>
         <view class='card_name'>{{resultData.realname}}</view>
       </block>
-      <view class='card_phone'>{{resultData.mobilephone}}</view>
+      <block wx:if='{{resultData.mobilephone == null || resultData.mobilephone == ""}}'>
+        <view class='card_phone'>未知</view>
+      </block>
+      <block wx:else>
+        <view class='card_phone'>{{resultData.mobilephone}}</view>
+      </block>
       <view class='card_job'>
-        <text class='card_job'>{{resultData.department}}</text> |
-        <text class='card_job'>{{resultData.job}}</text>
+        <block wx:if='{{resultData.department == null || resultData.department == ""}}'>
+          <text class='card_job'>未知</text> |
+        </block>
+        <block wx:else>
+          <text class='card_job'>{{resultData.department}}</text> |
+        </block>
+        <block wx:if='{{resultData.job == null || resultData.job == ""}}'>
+          <text class='card_job'>未知</text>
+        </block>
+        <block wx:else>
+          <text class='card_job'>{{resultData.job}}</text>
+        </block>
       </view>
-      <view class='card_company'>{{resultData.companyname}}</view>
+      <block wx:if='{{resultData.companyname == null || resultData.companyname == ""}}'>
+        <text class='card_job'>未知</text>
+      </block>
+      <block wx:else>
+        <text class='card_job'>{{resultData.companyname}}</text>
+      </block>
     </view>
     <view class='card_right'>
       <view class='card_img'>
@@ -108,11 +128,12 @@
   </view>
   <button class='save_phone' bindtap='savePhone'>保存到通讯录</button>
   <view class=''>
-    <view class='base_title mt20'>我的业务</view>
+    <view class='mt100'>我的业务</view>
     <view class='service_title'>
       <text class='base_title left'>我负责的产品</text>
       <block wx:if='{{productCount > 0}}'>
         <text class='right' bindtap='seeMore'>全部产品</text>
+        <image src='../../images/new/zhan.png' class='zhan right'></image>
       </block>
       <block wx:else>
       </block>
@@ -139,8 +160,9 @@
       </block>
       <view style='clear:both'></view>
     </view>
-    <view class='service_title'>
+    <view class='service_title mt20'>
       <text class='base_title left'>我负责的区域</text>
+      <view class='tip right'>注：蓝色代表您负责的区域</view>
     </view>
     <view class='base_main'>
       <block wx:if='{{areaCount > 0}}'>
@@ -159,7 +181,7 @@
             </view>    
           </view>
         </block>
-        <view class='tip'>注：蓝色代表您负责的区域</view>
+        <!--<view class='tip'>注：蓝色代表您负责的区域</view>-->
       </block>
       <block wx:else>
         <view class='none_info'>您还没有添加负责的区域</view>

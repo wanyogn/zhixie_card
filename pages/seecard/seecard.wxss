@@ -1,11 +1,12 @@
 /* pages/seeCard.wxss */
 page{
   height: 100%;
+  background: #e8e8e8;
 }
 .view_container{
   width: 100%;
   height: 100%;
-  background: #e8e8e8;
+  /*background: #e8e8e8;*/
   padding: 0;
 }
 .container_content{
@@ -55,4 +56,20 @@ page{
 }
 .right{
   float: right
+}
+.content_image{
+  width: 200rpx;
+  height: 150rpx;
+  padding-top: 20rpx;
+  margin: 0 auto 0 auto;
+}
+.content_image image{
+  width: 100%;
+  height: 100%;
+}
+.content_text{
+  text-align: center;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
 }

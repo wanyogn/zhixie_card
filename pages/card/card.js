@@ -87,10 +87,11 @@ Page({
       
     } else {//打开转发的页面,或者是小程序内打开
       let userid = options.userid;
+      //let userid = 176;
       let classify = options.type;
-      if (classify == 'forward'){
+      if (classify == 'forward'){//转发的页面
         handlerLogin.login(function (result) {
-          handlerLogin.getUserInfo(function (res) {
+          handlerLogin.getUserInfo(function (res) {//打开转发的页面，并且已授权
             var pc = new WXBizDataCrypt(app.globalData.appId, result.data.session_key);
             var data = pc.decryptData(res.encryptedData, res.iv);
             util.sendAjax('https://www.yixiecha.cn/wx_card/queryUserByUnionId.php', { unionid: data.unionId }, function (resu) {//已授权
@@ -104,15 +105,14 @@ Page({
                 that.contentFill(userid);
                 wx.hideLoading();
               }
-            }, function (res) {//未授权
-              that.setData({
-                userid: userid
-              })
-              that.contentFill(userid);
-              wx.hideLoading();
-              wx.setStorageSync("userid", userid);//将userID放入缓存
             })
-
+          },function(res){//打开转发的页面，并且未授权
+            that.setData({
+              userid: userid
+            })
+            that.contentFill(userid);
+            wx.hideLoading();
+            wx.setStorageSync("userid", userid);//将userID放入缓存
           })
         })
       }else{
@@ -479,8 +479,16 @@ Page({
     })
   },
   seeMore:function(){
+    let currentId = this.data.currentId;
+    let watchUserId = this.data.userid;
+    let userid = 0;
+    if (currentId == watchUserId) {//自己查看自己
+      userid = currentId;
+    } else {
+      userid = watchUserId;
+    }
     wx.navigateTo({
-      url: '../productList/product_list?userid=' + this.data.currentId,
+      url: '../productList/product_list?userid=' + userid,
     })
   },
   click_info:function(){
