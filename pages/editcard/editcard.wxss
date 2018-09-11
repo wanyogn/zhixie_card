@@ -50,7 +50,7 @@ page{
 .list_name{
   font-size: 30rpx;
   color: #888888;
-  width: 2em;
+  width: 15%;
 }
 .list_content{
   font-size: 30rpx;
@@ -61,7 +61,7 @@ page{
   height: 80rpx;
   font-size: 30rpx;
   color: #888888;
-  margin-left: 100rpx;
+  margin-left: 20rpx;
 }
 .borno{
   border-bottom: none;
@@ -80,7 +80,7 @@ page{
   height: 80rpx;
   font-size: 30rpx;
   color: #888888;
-  margin-left: 100rpx;
+  margin-left: 20rpx;
 }
 .place{
   color: #e0e0e0;

@@ -50,6 +50,7 @@
       </view>
     </scroll-view>
     <view class='btn_main'>
+      <button class='content_btn' bindtap='choose_other'>选择其他公司</button>
       <button class='saveInfo' bindtap='addInfo'>添加该公司产品信息</button>
     </view>
   </block>

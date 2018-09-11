@@ -20,7 +20,8 @@ Page({
     searchArea:[],
     areaCount:0,
     info_click:false,
-    areaData:[]
+    areaData:[],
+    homeBtnHidden:true,//是否有返回首页的按钮
   },
 
   /**
@@ -46,11 +47,11 @@ Page({
               })
             }
             let scan_url = decodeURIComponent(options.q);//获的扫码进来的参数
-            console.log(scan_url);
             let arr = scan_url.split("=");
             if (arr.length > 1) {
               that.contentFill(arr[1]);
               that.setData({
+                homeBtnHidden:false,
                 userid: arr[1]
               })
               that.contentFill(arr[1]);
@@ -70,6 +71,7 @@ Page({
           if (arr.length > 1) {
             that.contentFill(arr[1]);
             that.setData({
+              homeBtnHidden: false,
               userid: arr[1]
             })
             that.contentFill(arr[1]);
@@ -99,6 +101,7 @@ Page({
                 console.log(resu);
               } else {
                 that.setData({
+                  homeBtnHidden: false,
                   currentId: resu.id,
                   userid: userid
                 })
@@ -108,6 +111,7 @@ Page({
             })
           },function(res){//打开转发的页面，并且未授权
             that.setData({
+              homeBtnHidden: false,
               userid: userid
             })
             that.contentFill(userid);
@@ -123,9 +127,7 @@ Page({
         that.contentFill(userid);
         wx.hideLoading();
       }
-      
     }
-    
   },
   /*填充页面 */
   contentFill:function(id){
@@ -494,6 +496,11 @@ Page({
   click_info:function(){
     this.setData({
       info_click: !this.data.info_click
+    })
+  },
+  toIndex:function(){
+    wx.switchTab({
+      url: '../index/index'
     })
   }
 })

@@ -40,11 +40,32 @@ Page({
         })
       },
     });
-    this.setData({
+    /*this.setData({
       keyword: options.companyName
     })
-    this.contentActive(this.data.keyword, 0);
+    this.contentActive(this.data.keyword, 0);*/
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    })
+    let userid = options.id;
+    util.sendAjax('https://www.yixiecha.cn/wx_card/selectSeviceById.php',{userid:userid},function(res){
+      if(res.length > 0){//存在负责产品信息,使用已填写的企业
+        that.setData({
+          keyword: res[0].companyname
+        })
+        that.contentActive(that.data.keyword, 0);
+      }else{
+        util.sendAjax('https://www.yixiecha.cn/wx_card/userInfo.php', { userid: userid }, function (data) {
+          that.setData({
+            keyword: data.companyname
+          })
+          that.contentActive(that.data.keyword, 0);
+        })
+      }
+    })
   },
+  
   contentActive: function (keyword, num) {
     let that = this;
     let data = { classtype: 'com', keyword: keyword, production_type: '', manage_type: '', web_type: '', num: num };
@@ -107,7 +128,9 @@ Page({
           searchDatas: searchList
         });
       }
+      
     })
+    wx.hideLoading();
   },
   /*加载更多 */
   seeMore: function () {

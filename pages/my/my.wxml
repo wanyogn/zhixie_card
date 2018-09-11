@@ -9,11 +9,22 @@
       </view>
     </block>
     <block wx:else>
-      <view class='head_main' bindtap='updateInfo'>
+      <view class='head_main'>
         <image src='{{userInfo.headimg}}'></image>
         <text>{{userInfo.nickname}}</text>
       </view>
     </block>
+  </view>
+  <view class='base_info'>
+    <view class='base_list' data-type='viewid' bindtap='seecard'>
+      <view class='list_left'>
+        <image src='../../images/new/see.jpg' class='special_image'></image>
+        <text class='list_content'>我看过的名片</text>
+      </view>
+      <view class='list_right'>
+        <text class='list_tip'>></text>
+      </view>
+    </view>
   </view>
   <view class='base_info'>
     <view class='base_list' bindtap='mycode'>
@@ -25,8 +36,6 @@
         <text class='list_tip'>></text>
       </view>
     </view>
-  </view>
-  <view class='base_info'>
     <view class='base_list' bindtap='mycard'>
       <view class='list_left'>
         <image src='../../images/new/card.png'></image>
@@ -36,15 +45,7 @@
         <text class='list_tip'>></text>
       </view>
     </view>
-    <view class='base_list' data-type='viewid' bindtap='seecard'>
-      <view class='list_left'>
-        <image src='../../images/new/see.jpg' class='special_image'></image>
-        <text class='list_content'>我看过的名片</text>
-      </view>
-      <view class='list_right'>
-        <text class='list_tip'>></text>
-      </view>
-    </view>
+    
     <view class='base_list' data-type='viewedid' bindtap='seecard'>
       <view class='list_left'>
         <image src='../../images/new/see.jpg' class='special_image'></image>
@@ -58,17 +59,8 @@
   <view class='base_info'>
     <view class='base_list' bindtap='mybaseInfo'>
       <view class='list_left'>
-        <image src='../../images/card.png'></image>
-        <text class='list_content' >我的基本信息</text>
-      </view>
-      <view class='list_right'>
-        <text class='list_tip'>></text>
-      </view>
-    </view>
-    <view class='base_list' data-type='viewid' bindtap='seecard'>
-      <view class='list_left'>
-        <image src='../../images/card.png'></image>
-        <text class='list_content'>我的业务信息</text>
+        <image src='../../images/new/card.png'></image>
+        <text class='list_content' >编辑我的名片</text>
       </view>
       <view class='list_right'>
         <text class='list_tip'>></text>

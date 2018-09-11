@@ -41,7 +41,10 @@ page{
 }
 .mt10{
   margin-top: 8rpx;
-  margin-left: 15rpx;
+  
+}
+.ml15{
+margin-left: 15rpx;
 }
 .mr20{
   margin-right: 50rpx;

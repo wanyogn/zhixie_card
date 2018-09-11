@@ -20,13 +20,13 @@
                   <block wx:else>
                     <text class='name'>{{item.userInfo.realname}}</text>
                   </block>
-                    <text class='common mt10'>{{item.userInfo.department}}-{{item.userInfo.job}}</text>
+                    <text class='common mt10 ml15'>{{item.userInfo.department}}-{{item.userInfo.job}}</text>
                 </view>
                  <block wx:if='{{item.userInfo.companyname == null}}'>
-                  <view class='common'>未知</view>
+                  <view class='common mt10'>未知</view>
                  </block>
                  <block wx:else>
-                  <view class='common'>{{item.userInfo.companyname}}</view>
+                  <view class='common mt10'>{{item.userInfo.companyname}}</view>
                  </block>
                 
               </view>
@@ -37,7 +37,7 @@
           </view>
         </block>
         <block wx:else>
-          <view class='base_info' id='{{item.viewid}}' bindtap='seecard'>
+          <view class='base_info' bindtap='funBuild'>
             <image src='{{item.userInfo.headimg}}' class='left'></image>
             <view class='left base_list'>
               <view class='list_left left'>
@@ -48,13 +48,13 @@
                   <block wx:else>
                     <text class='name'>{{item.userInfo.realname}}</text>
                   </block>
-                    <text class='common mt10'>{{item.userInfo.department}}-{{item.userInfo.job}}</text>
+                    <text class='common mt10 ml15'>{{item.userInfo.department}}-{{item.userInfo.job}}</text>
                 </view>
                  <block wx:if='{{item.userInfo.companyname == null}}'>
-                  <view class='common'>未知</view>
+                  <view class='common mt10'>未知</view>
                  </block>
                  <block wx:else>
-                  <view class='common'>{{item.userInfo.companyname}}</view>
+                  <view class='common mt10'>{{item.userInfo.companyname}}</view>
                  </block>
               </view>
             </view>

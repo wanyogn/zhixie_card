@@ -138,7 +138,7 @@ Page({
       for (let i = 0; i < productids.length;i++){
         str += (productids[i]+",");
       }
-      util.sendAjax('https://www.yixiecha.cn/wx_card/operBusiness.php',{userid:userid,productids:str},function(res){
+      util.sendAjax('https://www.yixiecha.cn/wx_card/operBusiness.php',{userid:userid,productids:str,companyname: this.data.keyword},function(res){
         console.log(res);
       })
       wx.navigateTo({

@@ -56,6 +56,13 @@ Page({
     context.stroke();
 
     context.setFontSize(12);
+    context.setFillStyle('#b5b5b6');
+    context.setTextAlign('right');
+    context.fillText("开发部 | 开发工程师", 300, 400);
+    context.stroke();
+
+
+    context.setFontSize(12);
     context.setFillStyle('#595757');
     context.setTextAlign('left');
     context.fillText("15861803918", 39, 450);

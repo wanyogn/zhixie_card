@@ -68,17 +68,17 @@
     </view>
   </view>
   <block wx:if='{{info_click==true}}'>
-    <view class='open_close' bindtap='click_info'>展开全部信息↓</view>
+    <view class='open_close' bindtap='click_info'>展开全部信息∨</view>
   </block>
   <block wx:else>
-    <view class='open_close' bindtap='click_info'>收起全部信息↑</view>
+    <view class='open_close' bindtap='click_info'>收起全部信息∧</view>
   </block>
   
   <view class='base_info' hidden='{{info_click}}'>
     <!--微信-->
     <view class='base_list'>
       <view class='list_left'>
-        <image src='../../images/new/wechat.jpg'></image>
+        <image src='../../images/new/wechat.png'></image>
         <text class='list_content' bindtap='copywx'>{{resultData.wechatnum}}</text>
       </view>
       <view class='list_right'>
@@ -108,7 +108,7 @@
     <!--公司名称-->
     <view class='base_list'>
       <view class='list_left'>
-        <image src='../../images/new/company.jpg'></image>
+        <image src='../../images/new/company.png'></image>
         <text class='list_content'>{{resultData.companyname}}</text>
       </view>
       <view class='list_right'>
@@ -143,14 +143,14 @@
       <block wx:if='{{productCount > 0}}'>
         <block wx:for="{{searchData}}" wx:for-item="item">
           <view class='product_main {{item.odd}}'>
-            <view class='product_image'>
-              <image src='{{item.picture_addr}}'></image>
-            </view>
-            <view class='product_info'>
-              <view class='product_title'>
-                <view>{{item.product_name_ch}}</view>
+            <view class='pad20'>
+              <view class='product_image'>
+                <image src='{{item.picture_addr}}'></image>
               </view>
-
+            </view>
+            <view class='padlr'>
+              <view class='product_title'>{{item.product_name_ch}}</view>
+              <view class='product_info'>{{item.src_loc}} | {{item.main_class}}</view>
             </view>
           </view>
         </block>
@@ -164,28 +164,29 @@
       <text class='base_title left'>我负责的区域</text>
       <view class='tip right'>注：蓝色代表您负责的区域</view>
     </view>
-    <view class='base_main'>
-      <block wx:if='{{areaCount > 0}}'>
-        <!--<block wx:for="{{searchArea}}" wx:for-item="item">
-          <view class='area'>{{item.name}}</view>
-        </block>-->
-        <block wx:for="{{areaData}}" wx:for-item="item">
-          <view class='container_content'>
-            <view class='container_left'>
-              <view class='s_title full'>{{item.title.name}}</view>
+    <block wx:if='{{areaCount > 0}}'>
+      <view class='area_main'>
+        <view class='pad20'>
+          <block wx:for="{{areaData}}" wx:for-item="item">
+            <view class='container_content'>
+              <view class='container_left'>
+                <view class='s_title full'>{{item.title.name}}</view>
+              </view>
+              <view class='container_right'>
+                <block wx:for="{{item.content}}" wx:for-item="idx">
+                  <view class="area {{idx.selected==true?'active':''}}" data-current='{{idx.id}}' bindtap='bindCli' >{{idx.name}}</view>
+                </block>
+              </view>    
             </view>
-            <view class='container_right'>
-              <block wx:for="{{item.content}}" wx:for-item="idx">
-                <view class="area {{idx.selected==true?'active':''}}" data-current='{{idx.id}}' bindtap='bindCli' >{{idx.name}}</view>
-              </block>
-            </view>    
-          </view>
-        </block>
-        <!--<view class='tip'>注：蓝色代表您负责的区域</view>-->
-      </block>
-      <block wx:else>
+          </block>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='base_main'>
         <view class='none_info'>您还没有添加负责的区域</view>
-      </block>
-    </view>
+      </view>
+    </block>
   </view>
+  <button class='save_phone' bindtap='toIndex' hidden='{{homeBtnHidden}}'>返回首页</button>
 </view>

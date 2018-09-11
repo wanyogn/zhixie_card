@@ -15,22 +15,22 @@
 
     <view class='base_list'>
       <view class='list_name colred'>部门</view>
-      <!--<input type='text' value='{{resultData.department}}' placeholder='部门' bindinput='department'/>-->
-      <picker value='{{department}}' range='{{departmentArr}}' bindchange='department'>
+      <input type='text' value='{{resultData.department}}' placeholder='部门' bindinput='department'/>
+      <!--<picker value='{{department}}' range='{{departmentArr}}' bindchange='department'>
         <view class='picker'>
           {{departmentArr[department]}}
         </view>
-      </picker>
+      </picker>-->
     </view>
 
     <view class='base_list'>
       <view class='list_name colred'>职位</view>
-      <!--<input type='text' value='{{resultData.job}}' placeholder='职位' bindinput='job'/>-->
-      <picker value='{{job}}' range='{{jobArr}}' bindchange='job'>
+      <input type='text' value='{{resultData.job}}' placeholder='职位' bindinput='job'/>
+      <!--<picker value='{{job}}' range='{{jobArr}}' bindchange='job'>
         <view class='picker'>
           {{jobArr[job]}}
         </view>
-      </picker>
+      </picker>-->
     </view>
 
     <view class='base_list borno'>

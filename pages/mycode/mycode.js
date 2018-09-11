@@ -60,6 +60,7 @@ Page({
   createQrCode: function (url, canvasId, cavW, cavH) {
     //调用插件中的draw方法，绘制二维码图片
     QR.api.draw(url, canvasId, cavW, cavH);
+    //QR.qrApi.draw(url, canvasId, cavW, cavH, null, picUrl);
     setTimeout(() => { this.canvasToTempImage(); }, 1000);
   },
   //获取临时缓存照片路径，存入data中
@@ -92,7 +93,7 @@ Page({
       wx.hideToast()
       var size = that.setCanvasSize();
       //绘制二维码
-      that.createQrCode(url, "mycanvas", size.w, size.h);
+      that.createQrCode(url, "mycanvas", size.w, size.h); 
       clearTimeout(st);
     }, 2000)
 

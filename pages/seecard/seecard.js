@@ -63,5 +63,12 @@ Page({
     wx.navigateTo({
       url: '../card/card?userid=' + userid,
     })
+  },
+  funBuild:function(){
+    wx.showToast({
+      title: '您暂时无法查看...',
+      icon: 'none',
+      duration: 2000
+    })
   }
 })

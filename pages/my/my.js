@@ -10,6 +10,7 @@ Page({
     hasUserInfo: false,
     userInfo: {},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    userInfo:null
   },
   onShow:function(){
     if (app.globalData.userid != ""){
@@ -55,8 +56,25 @@ Page({
   mycode:function(){
     if (app.globalData.userid != "") {
       let userid = app.globalData.userid;
-      wx.navigateTo({
-        url: '../mycode/mycode?id=' + userid,
+      this.queryUser(userid, function (res) {
+        if (res.realname == null || res.realname == "" || res.realname == undefined) {
+          wx.showModal({
+            title: '个人信息未完善',
+            content: '是否前往完善个人信息？',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../editcard/editcard?id=' + userid,
+                })
+              } else if (res.cancel) {
+              }
+            }
+          })
+        } else {
+          wx.navigateTo({
+            url: '../mycode/mycode?id=' + userid,
+          })
+        }
       })
     }else{
       wx.showToast({
@@ -66,14 +84,31 @@ Page({
         duration: 2000
       })
     }
-    
   },
   /*我的名片 */
   mycard:function(){
     if (app.globalData.userid != "") {
       let userid = app.globalData.userid;
-      wx.navigateTo({
-        url: '../card/card?userid=' + userid,
+      this.queryUser(userid,function(res){
+        //console.log(res);
+        if (res.realname == null || res.realname == "" || res.realname == undefined){
+          wx.showModal({
+            title: '个人信息未完善',
+            content: '是否前往完善个人信息？',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../editcard/editcard?id=' + userid,
+                })
+              } else if (res.cancel) {
+              }
+            }
+          })
+        }else{
+          wx.navigateTo({
+            url: '../card/card?userid=' + userid,
+          })
+        }
       })
     }else{
       wx.showToast({
@@ -117,9 +152,68 @@ Page({
     }
   },
   mybaseInfo:function(){
-    if (app.globalData.userid != "") {
-      wx.navigateTo({
-        url: '../mycard/mycard?id=' + app.globalData.userid,
+    let userid = app.globalData.userid;
+    if (userid != "") {
+      this.queryUser(userid, function (res) {
+        if (res.realname == null || res.realname == "" || res.realname == undefined) {
+          wx.showModal({
+            title: '个人信息未完善',
+            content: '是否前往完善个人信息？',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../editcard/editcard?id=' + userid,
+                })
+              } else if (res.cancel) {
+              }
+            }
+          })
+        } else {
+          wx.showActionSheet({
+            itemList: ['修改基本信息', '修改关联企业', '修改关联产品', '修改业务区域'],
+            success: function (res) {
+              let index = res.tapIndex;
+              if (index == 0) {
+                wx.navigateTo({
+                  url: '../editcard/editcard?id=' + userid,
+                })
+              } else if (index == 1) {
+                wx.navigateTo({
+                  url: '../currentCompany/currentCompany?id=' + userid,
+                })
+              } else if (index == 2) {
+                util.sendAjax('https://www.yixiecha.cn/wx_card/selectSeviceById.php', { userid: userid }, function (data) {
+                  if(data.length > 0){
+                    wx.navigateTo({
+                      url: '../business/business?keyword=' + data[0].companyname,
+                    })
+                  }else{
+                    wx.showModal({
+                      title: '企业还未关联',
+                      content: '是否同意前往关联企业？',
+                      success: function (res) {
+                        if (res.confirm) {
+                          wx.navigateTo({
+                            url: '../currentCompany/currentCompany?id=' + userid,
+                          })
+                        } else if (res.cancel) {
+                        }
+                      }
+                    })
+                  }
+                  
+                })
+              } else if (index == 3) {
+                wx.navigateTo({
+                  url: '../areaSel/areaSel',
+                })
+              }
+            },
+            fail: function (res) {
+              console.log(res.errMsg)
+            }
+          })
+        }
       })
     } else {
       wx.showToast({
@@ -128,7 +222,7 @@ Page({
         icon: 'none',
         duration: 2000
       })
-    }
+    }    
   },
   getUserInfo: function (e) {
     if (e.detail.userInfo) {//用户按了允许授权按钮
@@ -209,5 +303,15 @@ Page({
       } else {//未授权
       }
     }
+  },
+  queryUser:function(id,callback){
+    let that = this;
+    util.sendAjax('https://www.yixiecha.cn/wx_card/userInfo.php', { userid: id }, function (res) {
+      /*console.log(res);
+      that.setData({
+        userInfo:res
+      })*/
+      callback(res);
+    })
   }
 })

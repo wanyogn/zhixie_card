@@ -166,7 +166,7 @@ Page({
             } else {
               that.save(data, function () {
                 wx.navigateTo({
-                  url: '../currentCompany/currentCompany?companyName=' + companyname,
+                  url: '../currentCompany/currentCompany?id=' + id,
                 })
               });
             }

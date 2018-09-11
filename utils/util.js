@@ -33,7 +33,7 @@ function sendAjax(url, data, callback) {
 }
 /*根据id获取部门名称 */
 function getDepartmentById(id){
-  let name = '无';
+  let name = '暂无';
   if(id == 1){
     name = "销售部";
   }else if(id == 2){
@@ -47,7 +47,7 @@ function getDepartmentById(id){
 }
 /*根据id获取职位名称 */
 function getJobById(id){
-  let name = '无';
+  let name = '暂无';
   if(id == 1){
     name = "销售人员";
   }else if(id == 2){
@@ -143,20 +143,19 @@ function timeago(dateTimeStamp) {   //dateTimeStamp是一个时间毫秒，注�
   var halfamonth = day * 15;
   var month = day * 30;
   var now = new Date().getTime();   //获取当前时间毫秒
-  console.log(now)
   var diffValue = now - new Date(dateTimeStamp).getTime();//时间差
   if (diffValue < 0) {
     return;
   }
-  var minC = diffValue / minute;  //计算时间差的分，时，天，周，月
-  var hourC = diffValue / hour;
-  var dayC = diffValue / day;
-  var weekC = diffValue / week;
-  var monthC = diffValue / month;
+  var minC = Math.floor(diffValue / minute);  //计算时间差的分，时，天，周，月
+  var hourC = Math.floor(diffValue / hour);
+  var dayC =  Math.floor(diffValue / day);
+  var weekC = Math.floor(diffValue / week);
+  var monthC = Math.floor(diffValue / month);
   var result ='';
-  if (monthC >= 1 && monthC <= 3) {
+  if (monthC >= 1) {
     result = " " + parseInt(monthC) + "月前"
-  } else if (weekC >= 1 && weekC <= 3) {
+  } else if (weekC >= 1 && weekC <= 4) {
     result = " " + parseInt(weekC) + "周前"
   } else if (dayC >= 1 && dayC <= 6) {
     result = " " + parseInt(dayC) + "天前"
@@ -167,15 +166,8 @@ function timeago(dateTimeStamp) {   //dateTimeStamp是一个时间毫秒，注�
   } else if (diffValue >= 0 && diffValue <= minute) {
     result = "刚刚"
   } else {
-    var datetime = new Date();
-    datetime.setTime(dateTimeStamp);
-    var Nyear = datetime.getFullYear();
-    var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-    var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-    var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-    var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-    var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-    result = Nyear + "-" + Nmonth + "-" + Ndate
+    
+    result = "时间异常";
   }
   return result;
 }
