@@ -19,7 +19,7 @@
                     <block wx:for="{{item.production_type}}" wx:for-item="idx">
                       <text class='sczz_t {{idx.cls}}'>{{idx.title}}</text>
                     </block>
-                    <text style='margin-left:30rpx;'>相关产品</text>
+                    <text style='margin-left:30rpx;'>有效产品</text>
                     <text class='sczz_t active'>{{item.product_count}}</text>
                   </view>
                   <view class='sczz'>

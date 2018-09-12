@@ -140,8 +140,8 @@ Page({
           duration: 2000
         })
       } else {
-        res.department = util.getDepartmentById(res.department);
-        res.job = util.getJobById(res.job);
+        //res.department = util.getDepartmentById(res.department);
+        //res.job = util.getJobById(res.job);
         that.isExistDZ(id);
         util.sendAjax('https://www.yixiecha.cn/wx_card/queryViewCardById.php', { userid: id, classifytype: 'viewedid',opertype:0}, function (resu) {
           res.viewed = resu.ck;//查看次数

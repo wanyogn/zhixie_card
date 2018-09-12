@@ -48,42 +48,48 @@ Page({
   },
   contentActive:function(keyword,num){
     let that = this;
-    let data = { classtype: 'com', keyword: keyword, production_type: '', manage_type: '', web_type: '', num: num };
-    util.sendAjax('https://www.yixiecha.cn/wxsmallprogram/wx_search_list.php', data, function (data) {
-      console.log(data);
+    let data = { keyword: keyword, num: num };
+    util.sendAjax('https://www.yixiecha.cn/wxsmallprogram/wx_searchUsedPoduct.php', data, function (data) {
       for (var index in data.datas) {
-        let production_type = data.datas[index].production_type.split(",");
-        let manager_type = data.datas[index].manage_type.split(",");
-        let web_type = data.datas[index].web_type.split(",");
         data.datas[index].idx = parseInt(that.data.searchPageNum * that.data.pagenumber) + parseInt(index);
         data.datas[index].selectedFlag = false;
-        for (var i = 0; i < production_type.length; i++) {
-          if (production_type[i] != '') {
-            that.data.sczz[production_type[i] - 1].cls = 'active';
+        if (data.datas[index].production_type == undefined || data.datas[index].manage_type == undefined || data.datas[index].web_type == undefined){
+          data.datas[index].production_type = that.data.sczz;
+          data.datas[index].manager_type = that.data.jyzz;
+          data.datas[index].web_type = that.data.fwzz;
+          that.setData(that.data);
+        }else{
+          let production_type = data.datas[index].production_type.split(",");
+          let manager_type = data.datas[index].manage_type.split(",");
+          let web_type = data.datas[index].web_type.split(",");
+          for (var i = 0; i < production_type.length; i++) {
+            if (production_type[i] != '') {
+              that.data.sczz[production_type[i] - 1].cls = 'active';
+            }
           }
-        }
-        for (var i = 0; i < manager_type.length; i++) {
-          if (manager_type[i] != '') {
-            that.data.jyzz[manager_type[i] - 1].cls = 'active';
+          for (var i = 0; i < manager_type.length; i++) {
+            if (manager_type[i] != '') {
+              that.data.jyzz[manager_type[i] - 1].cls = 'active';
+            }
           }
-        }
-        for (var i = 0; i < web_type.length; i++) {
-          if (web_type[i] != '') {
-            that.data.fwzz[web_type[i] - 1].cls = 'active';
+          for (var i = 0; i < web_type.length; i++) {
+            if (web_type[i] != '') {
+              that.data.fwzz[web_type[i] - 1].cls = 'active';
+            }
           }
-        }
-        data.datas[index].production_type = that.data.sczz;
-        data.datas[index].manager_type = that.data.jyzz;
-        data.datas[index].web_type = that.data.fwzz;
-        that.setData(that.data);
-        for (let j = 0; j < that.data.sczz.length; j++) {
-          that.data.sczz[j].cls = '';
-        }
-        for (let j = 0; j < that.data.jyzz.length; j++) {
-          that.data.jyzz[j].cls = '';
-        }
-        for (let j = 0; j < that.data.fwzz.length; j++) {
-          that.data.fwzz[j].cls = '';
+          data.datas[index].production_type = that.data.sczz;
+          data.datas[index].manager_type = that.data.jyzz;
+          data.datas[index].web_type = that.data.fwzz;
+          that.setData(that.data);
+          for (let j = 0; j < that.data.sczz.length; j++) {
+            that.data.sczz[j].cls = '';
+          }
+          for (let j = 0; j < that.data.jyzz.length; j++) {
+            that.data.jyzz[j].cls = '';
+          }
+          for (let j = 0; j < that.data.fwzz.length; j++) {
+            that.data.fwzz[j].cls = '';
+          }
         }
       }
       

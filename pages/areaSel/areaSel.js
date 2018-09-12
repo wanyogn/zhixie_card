@@ -22,15 +22,30 @@ Page({
         })
       },
     })*/
+    let userid = app.globalData.userid;
+    let chooseRes = this.data.chooseRes;
     util.sendAjax('https://www.yixiecha.cn/wx_card/selectAreas.php', {}, function (res) {
-      for(let i = 0;i < res.length;i++){
-        for(let j = 0;j < res[i].content.length;j++){
-          res[i].content[j].selected = false;
+      util.sendAjax('https://www.yixiecha.cn/wx_card/selectAreaById.php', { userid: 176 }, function (data) {
+        console.log(data);
+        if(data == "fail"){//还没有选择负责的区域
+        }else{
+          for (let i = 0; i < res.length; i++) {
+            for (let j = 0; j < res[i].content.length; j++) {
+              for (let a = 0; a < data.length; a++) {
+                if (res[i].content[j].id == data[a].id) {
+                  chooseRes.push(res[i].content[j].id);
+                  res[i].content[j].selected = true;
+                }
+              }
+            }
+          }
+          that.setData({
+            searchData: res,
+            chooseRes:chooseRes
+          })
         }
-      }
-      that.setData({
-        searchData:res
       })
+        
     })
   },
   swichNav: function (e) {

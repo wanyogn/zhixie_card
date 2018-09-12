@@ -139,11 +139,30 @@ Page({
         str += (productids[i]+",");
       }
       util.sendAjax('https://www.yixiecha.cn/wx_card/operBusiness.php',{userid:userid,productids:str,companyname: this.data.keyword},function(res){
-        console.log(res);
+        //console.log(res);
+        if(res == "1"){
+          wx.showToast({
+            title: '保存成功',
+            icon: 'success',
+            duration: 2000,
+            success:function(){
+              wx.switchTab({
+                url: '../my/my'
+              })
+            }
+          })
+        }else{
+          wx.showToast({
+            title: '保存异常',
+            icon: 'none',
+            duration: 2000
+          })
+        }
       })
-      wx.navigateTo({
+      /*wx.navigateTo({
         url: '../areaSel/areaSel',
-      })
+      })*/
+      
     }
   }
 })

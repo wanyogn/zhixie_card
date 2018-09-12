@@ -40,7 +40,7 @@ Page({
     context.setFillStyle("#ffffff");
     context.fillRect(0, 0, 375, 667);//背景色
 
-    context.setLineWidth(1);
+    /*context.setLineWidth(1);
     context.moveTo(40,40);
     context.lineTo(40,420);
     context.stroke();
@@ -90,7 +90,7 @@ Page({
     context.setFillStyle('#595757');
     context.setTextAlign('left');
     context.fillText("1436010367@qq.com", 187, 500);
-    context.stroke();
+    context.stroke();*/
 
     context.draw();
 

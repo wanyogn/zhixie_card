@@ -47,6 +47,6 @@
     </block>
   </scroll-view>
   <view class='btn_main'>
-    <button class='saveInfo' bindtap='saveInfo'>保存并进行区域选择</button>
+    <button class='saveInfo' bindtap='saveInfo'>保存关联产品</button>
   </view>
 </view>

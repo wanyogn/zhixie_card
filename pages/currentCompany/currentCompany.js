@@ -68,8 +68,8 @@ Page({
   
   contentActive: function (keyword, num) {
     let that = this;
-    let data = { classtype: 'com', keyword: keyword, production_type: '', manage_type: '', web_type: '', num: num };
-    util.sendAjax('https://www.yixiecha.cn/wxsmallprogram/wx_search_list.php', data, function (data) {
+    let data = { keyword: keyword, num: num };
+    util.sendAjax('https://www.yixiecha.cn/wxsmallprogram/wx_searchUsedPoduct.php', data, function (data) {
       console.log(data);
       for (var index in data.datas) {
         let production_type = data.datas[index].production_type.split(",");
